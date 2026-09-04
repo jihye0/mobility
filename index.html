@@ -4,7 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <title>K-Mobility 브릿지 재단 | 협력사 지원사업</title>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <!-- 성능: API 서버(리다이렉트 대상 포함)와 폰트 CDN에 미리 연결 -->
+  <link rel="preconnect" href="https://script.google.com">
+  <link rel="preconnect" href="https://script.googleusercontent.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <!-- 성능: 폰트는 렌더링을 막지 않도록 비동기 로드 (시스템 폰트로 먼저 표시) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"></noscript>
+
+  <!-- 앱스크립트 웹앱 URL 설정 (config.js 파일에서 API_URL 값을 수정하세요) -->
+  <script src="config.js"></script>
+
+  <!-- 성능: HTML/CSS 파싱을 기다리지 않고 데이터 요청을 가장 먼저 시작 -->
+  <script>
+    (function () {
+      var url = String(window.APP_CONFIG && window.APP_CONFIG.API_URL || "").trim();
+      var ok = /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec/.test(url);
+      window.__EARLY_LIVE__ = ok
+        ? fetch(url + "?action=data&_=" + Date.now(), { redirect: "follow", cache: "no-store" }).then(function (r) { return r.text(); })
+        : null;
+      // GitHub 저장소의 스냅샷(data.json) — GitHub Actions가 갱신. 없으면 조용히 건너뜀.
+      window.__EARLY_SNAPSHOT__ = fetch("data.json", { cache: "no-cache" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -4048,9 +4074,6 @@
     </section>
   </div>
 
-  <!-- 앱스크립트 웹앱 URL 설정 (config.js 파일에서 API_URL 값을 수정하세요) -->
-  <script src="config.js"></script>
-
   <script>
     // ── GitHub Pages 정적 버전 ──────────────────────────────
     // 데이터는 Apps Script 웹앱(JSON API)에서 fetch로 받아옵니다.
@@ -4265,6 +4288,14 @@
         option.textContent = region;
         regionFilter.appendChild(option);
       }
+
+      // 데이터가 백그라운드에서 갱신되어도 사용자가 고른 필터/정렬은 유지
+      typeFilter.value = types.includes(state.type) ? state.type : "";
+      regionFilter.value = regions.includes(state.region) ? state.region : "";
+      state.type = typeFilter.value;
+      state.region = regionFilter.value;
+      sortSelect.value = state.sort;
+      searchInput.value = state.search;
     }
 
     function urgencyBonus(program) {
@@ -4831,6 +4862,49 @@
       renderAll();
     }
 
+    // ── 로딩 전략 (빠른 첫 화면) ──────────────────────────────
+    // 1) 브라우저 저장소(localStorage)에 남은 마지막 데이터 → 즉시 표시
+    // 2) GitHub 저장소의 data.json 스냅샷 → 즉시 표시 (첫 방문자용)
+    // 3) Apps Script 실시간 API → 도착하면 조용히 교체
+    const LOCAL_CACHE_KEY = "kmb_programs_cache_v1";
+    let renderedFingerprint = "";
+
+    function fingerprint(payload) {
+      return JSON.stringify(payload && payload.programs ? payload.programs : []) + "|" + (payload && payload.updatedAt || "");
+    }
+
+    function readLocalCache() {
+      try {
+        const raw = localStorage.getItem(LOCAL_CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed && Array.isArray(parsed.programs) ? parsed : null;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function writeLocalCache(payload) {
+      try {
+        localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(payload));
+      } catch (error) {
+        /* 저장 불가 환경(시크릿 모드 등)은 무시 */
+      }
+    }
+
+    function isValidPayload(payload) {
+      return payload && payload.ok !== false && Array.isArray(payload.programs);
+    }
+
+    function renderIfChanged(payload, source) {
+      const fp = fingerprint(payload);
+      if (fp === renderedFingerprint) return false;
+      renderedFingerprint = fp;
+      applyProgramData(payload);
+      console.info(`[지원사업] ${source} 데이터 표시 (${payload.programs.length}건)`);
+      return true;
+    }
+
     async function loadProgramData() {
       if (!isApiConfigured()) {
         showNotice(
@@ -4844,18 +4918,49 @@
       }
 
       hideNotice();
-      listEl.innerHTML = '<div class="empty">데이터를 불러오는 중입니다.</div>';
 
+      // 1) localStorage 캐시 → 즉시
+      const local = readLocalCache();
+      if (local) renderIfChanged(local, "브라우저 캐시");
+
+      // 2) data.json 스냅샷 → 거의 즉시 (아직 아무것도 못 그렸을 때만 의미 있음)
+      if (window.__EARLY_SNAPSHOT__) {
+        window.__EARLY_SNAPSHOT__.then(snapshot => {
+          if (isValidPayload(snapshot) && !renderedFingerprint) {
+            renderIfChanged(snapshot, "스냅샷(data.json)");
+          }
+        });
+      }
+
+      // 3) 실시간 API
       try {
-        const payload = await callApi({ action: "data" });
+        let payload;
+        if (window.__EARLY_LIVE__) {
+          const text = await window.__EARLY_LIVE__;
+          try {
+            payload = JSON.parse(text);
+          } catch (error) {
+            throw new Error("API 응답이 JSON 형식이 아닙니다. 웹앱 배포 액세스 권한이 '모든 사용자'인지 확인하세요.");
+          }
+        } else {
+          payload = await callApi({ action: "data" });
+        }
 
-        if (!payload || payload.ok === false) {
+        if (!isValidPayload(payload)) {
           throw new Error((payload && payload.message) || "API에서 오류를 반환했습니다.");
         }
 
-        applyProgramData(payload);
+        writeLocalCache(payload);
+        renderIfChanged(payload, "실시간 API");
       } catch (error) {
         console.error(error);
+
+        if (renderedFingerprint) {
+          // 캐시/스냅샷으로 이미 화면이 그려졌으면 조용히 안내만
+          showNotice("실시간 데이터를 불러오지 못해 <strong>저장된 최근 데이터</strong>를 표시하고 있습니다. (" + escapeHtml(error.message || String(error)) + ")");
+          return;
+        }
+
         loadErrorMessage = `데이터를 불러오지 못했습니다. ${error.message || error}`;
         showNotice(
           "<strong>데이터를 불러오지 못했습니다.</strong> " + escapeHtml(error.message || String(error)) +
