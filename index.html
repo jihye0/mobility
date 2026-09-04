@@ -1,0 +1,4872 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <title>K-Mobility 브릿지 재단 | 협력사 지원사업</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f3f7fd;
+      --surface: #ffffff;
+      --surface-2: #eaf2fb;
+      --line: #d5e3f3;
+      --line-strong: #a9c0db;
+      --text: #132235;
+      --muted: #5d7087;
+      --subtle: #8a9bb0;
+      --green: #0f7b75;
+      --green-2: #0d6664;
+      --blue: #1f4f86;
+      --blue-2: #163d69;
+      --blue-soft: #edf5ff;
+      --cyan: #287aa8;
+      --amber: #b7791f;
+      --red: #b42318;
+      --ink: #102033;
+      --shadow: 0 18px 50px rgba(31, 79, 134, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 88% 9%, rgba(255,255,255,0.72) 0 1.2px, transparent 2px) 0 0 / 30px 30px,
+        radial-gradient(circle at 7% 76%, rgba(255,255,255,0.68) 0 1.4px, transparent 2.2px) 0 0 / 32px 32px,
+        radial-gradient(ellipse at 50% 34%, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.48) 40%, transparent 72%),
+        linear-gradient(165deg, rgba(188,225,255,0.58) 0%, rgba(232,244,255,0.88) 26%, rgba(250,253,255,0.96) 52%, rgba(218,238,255,0.82) 78%, rgba(132,192,242,0.56) 100%),
+        var(--page);
+      color: var(--text);
+      font-family: "Pretendard", "Noto Sans KR", "Segoe UI", Arial, sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      left: 50%;
+      z-index: -2;
+      pointer-events: none;
+      width: 170vw;
+      height: 56vh;
+      border-radius: 50%;
+      transform: translateX(-50%) rotate(-8deg);
+    }
+
+    body::before {
+      top: -30vh;
+      background:
+        radial-gradient(ellipse at 35% 70%, rgba(255,255,255,0.46), transparent 50%),
+        linear-gradient(180deg, rgba(164,211,250,0.24), rgba(224,241,255,0.10));
+      box-shadow:
+        0 44px 0 rgba(255,255,255,0.16),
+        0 88px 0 rgba(171,215,251,0.10);
+    }
+
+    body::after {
+      bottom: -34vh;
+      background:
+        linear-gradient(150deg, rgba(154,205,247,0.42), rgba(101,166,226,0.58) 64%, rgba(72,139,210,0.62));
+      box-shadow:
+        -18vw -9vh 0 rgba(188,225,255,0.26),
+        18vw -16vh 0 rgba(230,244,255,0.42),
+        0 -26vh 0 rgba(176,218,250,0.18);
+      transform: translateX(-50%) rotate(-7deg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+
+    .app {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 18px 0 36px;
+    }
+
+
+    .app {
+      position: relative;
+      z-index: 1;
+    }
+
+    .app::before {
+      content: "";
+      position: fixed;
+      right: -18vw;
+      bottom: 3vh;
+      z-index: -1;
+      width: 54vw;
+      height: 42vh;
+      border-radius: 50%;
+      opacity: 0.18;
+      pointer-events: none;
+      background:
+        repeating-radial-gradient(ellipse at center,
+          rgba(255,255,255,0.48) 0 1px,
+          transparent 1px 11px);
+      transform: rotate(-18deg);
+      filter: blur(0.1px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      min-height: 62px;
+      padding: 6px 0 8px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 40px;
+      padding: 4px 0;
+      color: var(--blue);
+      font-weight: 950;
+      font-size: 22px;
+      line-height: 1.16;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+
+    .brand:hover {
+      opacity: 0.86;
+      transform: translateY(-1px);
+    }
+
+
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .headline {
+      min-height: 164px;
+      padding: 22px 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 255, 0.84)),
+        var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .headline-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .headline-kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    h1 {
+      max-width: 1060px;
+      margin: 10px 0 10px;
+      font-size: 30px;
+      line-height: 1.18;
+    }
+
+    .benefit-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .benefit-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 9px;
+      border: 1px solid #c7daef;
+      border-radius: 999px;
+      background: #f6faff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .benefit-text {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .updated-at {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 30px;
+      margin-top: 12px;
+      padding: 5px 10px;
+      border: 1px solid #c7daef;
+      border-radius: 8px;
+      background: #f6faff;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      min-width: 0;
+      display: block;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--blue-soft);
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+    }
+
+    .stat:hover,
+    .stat.is-active {
+      border-color: var(--blue);
+      box-shadow: inset 4px 0 0 var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .top-programs {
+      min-height: 190px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .top-programs-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fbfa;
+    }
+
+    .top-programs-head span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .top-programs-head strong {
+      color: var(--blue);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .top-list { display: grid; }
+
+    .top-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      padding: 13px 16px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .top-item:last-child { border-bottom: 0; }
+    .top-item:hover { background: #f4faf7; }
+
+    .top-rank {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .top-name {
+      min-width: 0;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.38;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) 170px 170px 160px;
+      gap: 10px;
+      margin: 18px 0 12px;
+    }
+
+    .search, .select {
+      height: 44px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+    }
+
+    .search { padding: 0 14px; }
+
+    .select {
+      appearance: none;
+      padding: 0 42px 0 14px;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--blue) 50%),
+        linear-gradient(135deg, var(--blue) 50%, transparent 50%);
+      background-position:
+        calc(100% - 21px) 50%,
+        calc(100% - 15px) 50%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+
+    .search:focus, .select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(31, 79, 134, 0.16);
+    }
+
+    .select.is-active, .search.is-active {
+      border-color: var(--blue);
+      background-color: #f6faff;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 10px;
+    }
+
+    .tab {
+      flex: 0 0 auto;
+      height: 38px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tab[aria-selected="true"] {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #ffffff;
+    }
+
+    .tab-count {
+      min-width: 22px;
+      height: 22px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .tab[aria-selected="true"] .tab-count {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    .board {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: visible;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .board-head,
+    .program-row {
+      display: grid;
+      grid-template-columns: minmax(520px, 1fr) 120px 100px 130px 72px 72px;
+      gap: 10px;
+    }
+
+    .board-head {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fbfa;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .program-row {
+      width: 100%;
+      padding: 16px 18px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .program-row:last-child { border-bottom: 0; }
+
+    .program-row:hover,
+    .program-row.is-active {
+      background: #f4f9ff;
+      box-shadow: inset 4px 0 0 var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .program-main { min-width: 0; }
+
+    .program-title {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      margin-bottom: 8px;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .program-title span:last-child {
+      min-width: 0;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .type-chip { border: 1px solid transparent; }
+    .type-export { background: #e8f3ff; border-color: #bddcff; color: #1f4f86; }
+    .type-hr { background: #eef8f7; border-color: #c7e4e1; color: #0d6664; }
+    .type-tech { background: #f1edff; border-color: #d8cff8; color: #5a3f97; }
+    .type-invest { background: #fff3dd; border-color: #f3d6a2; color: #8a5a16; }
+
+    .dday {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #fff0d4;
+      color: var(--amber);
+      font-size: 12px;
+      font-weight: 950;
+      line-height: 1.2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 72px;
+      min-height: 26px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .badge.open { background: #e7f0fb; color: var(--blue); }
+    .badge.closing { background: #fff0d4; color: var(--amber); }
+    .badge.always { background: #e7eef8; color: var(--blue); }
+    .badge.confirm { background: #fff5df; color: var(--amber); }
+    .badge.ended { background: #f8e4e1; color: var(--red); }
+
+    .cell {
+      min-width: 0;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .cell.muted {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .score {
+      width: 52px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #e7f0fb;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .info-tip {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: 19px;
+      height: 19px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 950;
+      cursor: help;
+    }
+
+    .info-tip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      width: min(260px, 72vw);
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      box-shadow: 0 10px 28px rgba(16, 32, 51, 0.22);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 4px);
+      transition: opacity 0.14s ease, transform 0.14s ease;
+      z-index: 5;
+    }
+
+    .info-tip:hover::after,
+    .info-tip:focus::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .page-button {
+      min-width: 38px;
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .page-button:hover,
+    .page-button.is-active {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #ffffff;
+    }
+
+    .page-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    .page-ellipsis {
+      min-width: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .empty {
+      padding: 42px 20px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .field div {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.58;
+      overflow-wrap: anywhere;
+      white-space: pre-line;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 0 22px 22px;
+    }
+
+    .action {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 42px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .action.primary {
+      border-color: var(--green);
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .action[aria-disabled="true"] {
+      pointer-events: none;
+      border-color: var(--line);
+      background: var(--surface-2);
+      color: var(--subtle);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(18, 26, 23, 0.48);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.is-open { display: flex; }
+    body.modal-open { overflow: hidden; }
+
+    .modal-panel {
+      width: min(760px, 100%);
+      max-height: min(86vh, 780px);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 28px 90px rgba(9, 17, 14, 0.28);
+      overflow: hidden;
+    }
+
+    .modal-top {
+      display: grid;
+      gap: 12px;
+      padding: 22px 22px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fbfa;
+    }
+
+    .modal-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      width: 34px;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    .modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .modal-body {
+      padding: 22px;
+      display: grid;
+      gap: 17px;
+      overflow: auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* 로딩/오류 안내 (GitHub Pages 정적 버전 추가) */
+    .notice {
+      margin: 0 0 12px;
+      padding: 12px 16px;
+      border: 1px solid #f3d6a2;
+      border-radius: 8px;
+      background: #fff8ea;
+      color: #8a5a16;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .notice code {
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.06);
+      font-size: 12px;
+    }
+
+    @media (max-width: 1180px) {
+      .header { grid-template-columns: 1fr; }
+      .top-programs { min-height: 150px; }
+    }
+
+    @media (max-width: 1180px) {
+      .app {
+        width: min(100% - 20px, 760px);
+        padding-top: 10px;
+      }
+
+      .headline { padding: 20px; }
+      h1 { font-size: 25px; }
+
+      .stats,
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .board-head { display: none; }
+
+      .program-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .program-row .cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .program-row .cell::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .score { width: 48px; }
+    }
+
+    @media (max-width: 560px) {
+      .stats,
+      .toolbar,
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .modal {
+        padding: 10px;
+        align-items: end;
+      }
+
+      .modal-panel { max-height: 92vh; }
+      .modal-title { font-size: 19px; }
+
+      .brand {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    /* =========================
+       Mobile optimization patch
+       - 기존 HTML/Apps Script 구조 유지
+       - 900px 이하: 목록을 카드형으로 전환
+       - 560px 이하: 검색/필터/모달을 휴대폰 친화적으로 조정
+       ========================= */
+    @media (max-width: 1180px) {
+      body {
+        background:
+          linear-gradient(180deg, #eef6ff 0%, #f8fbff 42%, #eef6ff 100%);
+      }
+
+      body::before,
+      body::after,
+      .app::before {
+        display: none;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 760px;
+        padding: 10px 12px 28px;
+      }
+
+      .topbar {
+        min-height: 48px;
+        padding: 2px 0 6px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .brand small {
+        font-size: 12px;
+      }
+
+      .header {
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .headline,
+      .top-programs,
+      .board {
+        border-radius: 14px;
+        box-shadow: 0 10px 28px rgba(31, 79, 134, 0.10);
+      }
+
+      .headline {
+        min-height: auto;
+        padding: 18px 16px;
+      }
+
+      .headline-kicker {
+        font-size: 12px;
+      }
+
+      h1 {
+        margin: 9px 0 12px;
+        font-size: clamp(22px, 6.2vw, 28px);
+        line-height: 1.25;
+        word-break: keep-all;
+      }
+
+      .benefit-strip {
+        gap: 6px;
+        font-size: 13px;
+      }
+
+      .benefit-chip {
+        min-height: 25px;
+        padding: 4px 8px;
+        font-size: 11px;
+      }
+
+      .benefit-text {
+        width: 100%;
+        line-height: 1.45;
+      }
+
+      .updated-at {
+        margin-top: 10px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .stat {
+        min-height: 74px;
+        padding: 11px 12px;
+        border-radius: 12px;
+      }
+
+      .stat strong {
+        font-size: 20px;
+      }
+
+      .top-programs-head {
+        padding: 14px 14px 10px;
+      }
+
+      .top-item {
+        grid-template-columns: 30px minmax(0, 1fr);
+        padding: 12px 14px;
+      }
+
+      .top-rank {
+        width: 28px;
+        height: 28px;
+      }
+
+      .top-name {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 14px 0 10px;
+      }
+
+      .search,
+      .select {
+        height: 46px;
+        min-width: 0;
+        border-radius: 12px;
+        font-size: 16px; /* iOS 자동 확대 방지 */
+      }
+
+      .search {
+        grid-column: 1 / -1;
+      }
+
+      .tabs {
+        margin: 0 -12px;
+        padding: 2px 12px 10px;
+        gap: 7px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab {
+        height: 38px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .tab-count {
+        min-width: 20px;
+        height: 20px;
+        font-size: 11px;
+      }
+
+      .board {
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .board-head {
+        display: none;
+      }
+
+      #programList {
+        display: grid;
+        gap: 10px;
+      }
+
+      .program-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 11px;
+        padding: 15px 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 8px 22px rgba(31, 79, 134, 0.08);
+        transform: none;
+      }
+
+      .program-row:hover,
+      .program-row.is-active {
+        background: #ffffff;
+        box-shadow: inset 4px 0 0 var(--blue), 0 10px 24px rgba(31, 79, 134, 0.12);
+        transform: none;
+      }
+
+      .program-title {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        margin-bottom: 8px;
+        font-size: 15px;
+        line-height: 1.42;
+      }
+
+      .program-title .chip {
+        width: max-content;
+        max-width: 100%;
+      }
+
+      .meta {
+        gap: 5px 8px;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .meta span {
+        display: inline-flex;
+        max-width: 100%;
+      }
+
+      .program-row .cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        min-height: 28px;
+        padding-top: 9px;
+        border-top: 1px dashed var(--line);
+        font-size: 13px;
+      }
+
+      .program-row .cell::before {
+        content: attr(data-label);
+        flex: 0 0 auto;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .program-row .cell > *:last-child,
+      .program-row .cell.muted {
+        text-align: right;
+      }
+
+      .badge,
+      .dday,
+      .score {
+        min-height: 28px;
+      }
+
+      .score {
+        width: auto;
+        min-width: 48px;
+        padding: 0 9px;
+      }
+
+      .pagination {
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .page-button {
+        min-width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        padding: 8px 10px 24px;
+      }
+
+      .topbar {
+        justify-content: center;
+      }
+
+      .brand {
+        width: auto;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .headline {
+        padding: 16px 14px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stat {
+        min-height: 70px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .select {
+        padding-left: 13px;
+      }
+
+      .top-programs {
+        min-height: auto;
+      }
+
+      .program-row {
+        padding: 14px 13px;
+      }
+
+      .program-title {
+        font-size: 14px;
+      }
+
+      .meta span:nth-child(3) {
+        width: 100%;
+      }
+
+      .program-row .cell[data-label="관련도"],
+      .program-row .cell[data-label="조회수"] {
+        display: inline-flex;
+        width: calc(50% - 5px);
+        vertical-align: top;
+      }
+
+      .program-row .cell[data-label="조회수"] {
+        margin-left: 6px;
+      }
+
+      .modal {
+        padding: 0;
+        align-items: end;
+        background: rgba(16, 32, 51, 0.52);
+      }
+
+      .modal-panel {
+        width: 100%;
+        max-height: min(92vh, 720px);
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+        border-radius: 18px 18px 0 0;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+      }
+
+      .modal-top {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        padding: 16px 16px 13px;
+      }
+
+      .modal-toolbar {
+        align-items: center;
+      }
+
+      .modal-close {
+        width: 40px;
+        min-height: 40px;
+        border-radius: 12px;
+      }
+
+      .modal-title {
+        font-size: 18px;
+        line-height: 1.45;
+      }
+
+      .modal-meta {
+        max-height: 72px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .modal-body {
+        padding: 16px;
+        gap: 15px;
+      }
+
+      .field label {
+        font-size: 12px;
+      }
+
+      .field div {
+        font-size: 14px;
+      }
+
+      .actions {
+        position: sticky;
+        bottom: 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(10px);
+      }
+
+      .action {
+        min-height: 46px;
+        border-radius: 12px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .program-row .cell[data-label="관련도"],
+      .program-row .cell[data-label="조회수"] {
+        display: flex;
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (hover: none) {
+      .brand:hover,
+      .stat:hover,
+      .top-item:hover,
+      .program-row:hover,
+      .page-button:hover {
+        transform: none;
+      }
+    }
+
+
+
+    /* =========================
+       iPhone readability patch
+       - Apps Script iOS Safari에서 980px 뷰포트처럼 잡혀도 글자가 작아지지 않도록 보정
+       ========================= */
+    @media (max-width: 1180px) and (pointer: coarse) {
+      html {
+        -webkit-text-size-adjust: 118%;
+        text-size-adjust: 118%;
+      }
+
+      .app {
+        max-width: none;
+        width: 100%;
+        padding: 12px 16px 34px;
+      }
+
+      .brand {
+        font-size: 24px;
+        line-height: 1.1;
+      }
+
+      .brand small {
+        font-size: 14px;
+      }
+
+      .headline {
+        padding: 22px 20px;
+      }
+
+      .headline-kicker {
+        font-size: 15px;
+      }
+
+      h1 {
+        font-size: 34px;
+        line-height: 1.22;
+        letter-spacing: -0.03em;
+      }
+
+      .benefit-chip {
+        min-height: 32px;
+        padding: 5px 11px;
+        font-size: 14px;
+      }
+
+      .benefit-text,
+      .updated-at {
+        font-size: 15px;
+      }
+
+      .stat {
+        min-height: 88px;
+        padding: 16px 18px;
+      }
+
+      .stat span {
+        font-size: 15px;
+      }
+
+      .stat strong {
+        font-size: 28px;
+      }
+
+      .top-programs-head span {
+        font-size: 15px;
+      }
+
+      .top-programs-head strong {
+        font-size: 26px;
+      }
+
+      .top-item {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px 18px;
+      }
+
+      .top-rank {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+      }
+
+      .top-name {
+        font-size: 19px;
+        line-height: 1.38;
+      }
+
+      .search,
+      .select {
+        height: 54px;
+        font-size: 18px;
+        border-radius: 14px;
+      }
+
+      .tab {
+        height: 44px;
+        padding: 0 15px;
+        font-size: 16px;
+      }
+
+      .tab-count {
+        min-width: 26px;
+        height: 26px;
+        font-size: 14px;
+      }
+
+      #programList {
+        gap: 14px;
+      }
+
+      .program-row {
+        padding: 20px 18px;
+        border-radius: 18px;
+        gap: 14px;
+      }
+
+      .program-title {
+        font-size: 22px;
+        line-height: 1.36;
+        letter-spacing: -0.03em;
+      }
+
+      .chip {
+        min-height: 30px;
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+
+      .meta {
+        font-size: 14px;
+        line-height: 1.55;
+        gap: 7px 10px;
+      }
+
+      .program-row .cell {
+        min-height: 38px;
+        padding-top: 12px;
+        font-size: 16px;
+      }
+
+      .program-row .cell::before {
+        font-size: 15px;
+      }
+
+      .badge,
+      .dday,
+      .score {
+        min-height: 34px;
+        font-size: 15px;
+      }
+
+      .score {
+        min-width: 58px;
+        border-radius: 10px;
+      }
+
+      .page-button {
+        min-width: 46px;
+        height: 46px;
+        font-size: 16px;
+      }
+
+      .modal-title {
+        font-size: 23px;
+      }
+
+      .field label {
+        font-size: 15px;
+      }
+
+      .field div {
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      .action {
+        min-height: 54px;
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 560px) and (pointer: coarse) {
+      .app {
+        padding: 10px 12px 30px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .program-title {
+        font-size: 20px;
+      }
+
+      .top-name {
+        font-size: 18px;
+      }
+
+      .meta {
+        font-size: 13px;
+      }
+    }
+
+
+
+    /* =========================
+       Mobile readability v2
+       아이폰에서 한눈에 보이도록 폭, 글자, 카드 밀도 재조정
+       ========================= */
+    @media (max-width: 1180px) {
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .app {
+        width: 100%;
+        max-width: none;
+        padding: 12px 14px 96px;
+      }
+
+      .topbar {
+        min-height: 44px;
+        padding: 0 0 8px;
+      }
+
+      .brand {
+        justify-content: flex-start;
+        font-size: 24px;
+        line-height: 1.05;
+      }
+
+      .brand small {
+        font-size: 14px;
+      }
+
+      .header {
+        gap: 14px;
+        margin-top: 6px;
+      }
+
+      .headline,
+      .top-programs {
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(31, 79, 134, 0.10);
+      }
+
+      .headline {
+        padding: 20px 18px;
+      }
+
+      .headline-kicker {
+        font-size: 14px;
+      }
+
+      h1 {
+        margin: 10px 0 12px;
+        font-size: clamp(29px, 4.7vw, 38px);
+        line-height: 1.22;
+        letter-spacing: -0.035em;
+        word-break: keep-all;
+      }
+
+      .benefit-strip {
+        gap: 7px;
+        font-size: 15px;
+      }
+
+      .benefit-chip {
+        min-height: 30px;
+        padding: 5px 11px;
+        font-size: 13px;
+      }
+
+      .benefit-text {
+        width: 100%;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .updated-at {
+        min-height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .stat {
+        min-height: 84px;
+        padding: 14px 15px;
+        border-radius: 16px;
+      }
+
+      .stat span {
+        font-size: 15px;
+      }
+
+      .stat strong {
+        margin-top: 7px;
+        font-size: 28px;
+      }
+
+      .top-programs-head {
+        padding: 16px 16px 12px;
+      }
+
+      .top-programs-head span {
+        font-size: 14px;
+      }
+
+      .top-programs-head strong {
+        font-size: 24px;
+      }
+
+      .top-item {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 12px;
+        padding: 15px 16px;
+      }
+
+      .top-rank {
+        width: 34px;
+        height: 34px;
+        border-radius: 11px;
+        font-size: 15px;
+      }
+
+      .top-name {
+        font-size: 20px;
+        line-height: 1.32;
+        letter-spacing: -0.025em;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 16px 0 12px;
+      }
+
+      .search {
+        grid-column: 1 / -1;
+      }
+
+      .search,
+      .select {
+        height: 52px;
+        border-radius: 15px;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .tabs {
+        margin: 0 -14px;
+        padding: 2px 14px 12px;
+        gap: 9px;
+      }
+
+      .tab {
+        height: 46px;
+        padding: 0 15px;
+        border-radius: 999px;
+        font-size: 17px;
+        font-weight: 900;
+      }
+
+      .tab-count {
+        min-width: 26px;
+        height: 26px;
+        font-size: 13px;
+      }
+
+      #programList {
+        gap: 14px;
+      }
+
+      .program-row {
+        position: relative;
+        gap: 10px;
+        padding: 18px 16px 16px;
+        border-radius: 18px;
+        box-shadow: 0 8px 22px rgba(31, 79, 134, 0.09);
+      }
+
+      .program-title {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        margin-bottom: 10px;
+        font-size: 23px;
+        line-height: 1.34;
+        letter-spacing: -0.035em;
+        word-break: keep-all;
+      }
+
+      .program-title .chip {
+        width: max-content;
+        max-width: 100%;
+        min-height: 30px;
+        padding: 5px 11px;
+        font-size: 14px;
+      }
+
+      .meta {
+        gap: 6px 10px;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .meta span {
+        max-width: 100%;
+      }
+
+      .meta span:nth-child(3) {
+        width: 100%;
+        color: var(--text);
+        font-weight: 800;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .program-row .cell {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        align-items: center;
+        gap: 10px;
+        min-height: 42px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--line);
+        font-size: 17px;
+        font-weight: 900;
+      }
+
+      .program-row .cell::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 950;
+      }
+
+      .program-row .cell.muted {
+        color: var(--text);
+        font-weight: 900;
+      }
+
+      .program-row .cell > *:last-child,
+      .program-row .cell.muted {
+        justify-self: end;
+        text-align: right;
+      }
+
+      .program-row .cell[data-label="상태"] {
+        grid-template-columns: 92px 1fr auto;
+      }
+
+      .program-row .cell[data-label="상태"] .badge {
+        justify-self: end;
+      }
+
+      .badge,
+      .dday,
+      .score {
+        min-height: 34px;
+        border-radius: 999px;
+        font-size: 16px;
+      }
+
+      .badge {
+        min-width: 80px;
+        padding: 6px 12px;
+      }
+
+      .dday {
+        padding: 6px 12px;
+      }
+
+      .score {
+        width: auto;
+        min-width: 58px;
+        padding: 0 13px;
+      }
+
+      .program-row .cell[data-label="조회수"] {
+        display: none;
+      }
+
+      .program-row .cell[data-label="관련도"] {
+        display: none;
+      }
+
+      .pagination {
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .page-button {
+        min-width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        font-size: 16px;
+      }
+
+      .empty {
+        padding: 42px 18px;
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        padding: 10px 12px 92px;
+      }
+
+      .brand {
+        width: 100%;
+        justify-content: flex-start;
+        text-align: left;
+        font-size: 22px;
+      }
+
+      .headline {
+        padding: 18px 15px;
+      }
+
+      h1 {
+        font-size: clamp(26px, 7.3vw, 32px);
+      }
+
+      .stats {
+        gap: 8px;
+      }
+
+      .stat {
+        min-height: 80px;
+        padding: 13px 13px;
+      }
+
+      .stat span {
+        font-size: 14px;
+      }
+
+      .stat strong {
+        font-size: 26px;
+      }
+
+      .top-item {
+        padding: 14px 14px;
+      }
+
+      .top-name {
+        font-size: 18px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .search,
+      .select {
+        height: 52px;
+        font-size: 17px;
+      }
+
+      .tab {
+        height: 44px;
+        font-size: 16px;
+      }
+
+      .program-row {
+        padding: 17px 14px 15px;
+      }
+
+      .program-title {
+        font-size: 21px;
+        line-height: 1.36;
+      }
+
+      .meta {
+        font-size: 13px;
+      }
+
+      .program-row .cell {
+        grid-template-columns: 82px minmax(0, 1fr);
+        min-height: 40px;
+        font-size: 16px;
+      }
+
+      .program-row .cell::before {
+        font-size: 14px;
+      }
+
+      .program-row .cell[data-label="상태"] {
+        grid-template-columns: 82px 1fr auto;
+      }
+
+      .badge,
+      .dday,
+      .score {
+        min-height: 32px;
+        font-size: 15px;
+      }
+
+      .modal-title {
+        font-size: 23px;
+        line-height: 1.35;
+      }
+
+      .modal-body {
+        padding: 18px 16px;
+      }
+
+      .field label {
+        font-size: 15px;
+      }
+
+      .field div {
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      .action {
+        min-height: 52px;
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .program-title {
+        font-size: 20px;
+      }
+
+      .top-name {
+        font-size: 17px;
+      }
+
+      .program-row .cell {
+        grid-template-columns: 76px minmax(0, 1fr);
+        font-size: 15px;
+      }
+
+      .program-row .cell[data-label="상태"] {
+        grid-template-columns: 76px 1fr auto;
+      }
+    }
+
+
+
+    /* =========================
+       Mobile readability v4 - full width, compact, one-glance layout
+       v3의 430px 폭 제한 부작용 제거 + 모바일 정보 밀도 개선
+       ========================= */
+
+    html {
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 1180px) and (pointer: coarse) {
+      body {
+        background: linear-gradient(180deg, #edf6ff 0%, #f8fbff 42%, #edf6ff 100%);
+      }
+
+      body::before,
+      body::after,
+      .app::before {
+        display: none !important;
+      }
+
+      .app {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 12px 26px !important;
+      }
+
+      .topbar {
+        min-height: 42px;
+        padding: 2px 0 4px;
+        justify-content: flex-start;
+      }
+
+      .brand {
+        width: auto;
+        justify-content: flex-start;
+        text-align: left;
+        font-size: 22px;
+        line-height: 1.05;
+      }
+
+      .brand small {
+        font-size: 12px;
+        margin-top: 1px;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .headline,
+      .top-programs,
+      .program-row {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 8px 22px rgba(31, 79, 134, 0.08);
+      }
+
+      .headline {
+        min-height: 0;
+        padding: 16px 16px 14px;
+      }
+
+      .headline-kicker {
+        font-size: 12px;
+      }
+
+      h1 {
+        margin: 8px 0 10px;
+        font-size: 25px;
+        line-height: 1.25;
+        letter-spacing: -0.04em;
+        word-break: keep-all;
+      }
+
+      .benefit-strip {
+        gap: 5px;
+        font-size: 13px;
+      }
+
+      .benefit-chip {
+        min-height: 24px;
+        padding: 3px 8px;
+        font-size: 12px;
+      }
+
+      .benefit-text {
+        display: block;
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.38;
+      }
+
+      .updated-at {
+        min-height: 30px;
+        margin-top: 9px;
+        font-size: 12px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 7px;
+        margin-top: 12px;
+      }
+
+      .stat {
+        min-height: 64px;
+        padding: 9px 8px;
+        border-radius: 13px;
+      }
+
+      .stat span {
+        font-size: 11px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .stat strong {
+        margin-top: 5px;
+        font-size: 21px;
+        line-height: 1;
+      }
+
+      .top-programs {
+        min-height: 0;
+      }
+
+      .top-programs-head {
+        padding: 12px 14px 9px;
+      }
+
+      .top-programs-head span {
+        font-size: 12px;
+      }
+
+      .top-programs-head strong {
+        font-size: 21px;
+      }
+
+      .top-item {
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 10px;
+        padding: 11px 14px;
+      }
+
+      .top-rank {
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        font-size: 13px;
+      }
+
+      .top-name {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 15px;
+        line-height: 1.34;
+      }
+
+      .toolbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 12px 0 9px;
+      }
+
+      .search {
+        grid-column: 1 / -1;
+      }
+
+      .search,
+      .select {
+        width: 100%;
+        height: 46px;
+        border-radius: 13px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .tabs {
+        margin: 0 -12px;
+        padding: 2px 12px 10px;
+        gap: 7px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .tabs::-webkit-scrollbar { display: none; }
+
+      .tab {
+        height: 38px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 14px;
+      }
+
+      .tab-count {
+        min-width: 22px;
+        height: 22px;
+        font-size: 12px;
+      }
+
+      .board {
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .board-head {
+        display: none !important;
+      }
+
+      #programList {
+        display: grid;
+        gap: 10px;
+      }
+
+      .program-row {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+        padding: 15px 14px;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .program-title {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 20px;
+        line-height: 1.32;
+        letter-spacing: -0.04em;
+      }
+
+      .program-title .chip {
+        width: max-content;
+        max-width: 100%;
+        min-height: 26px;
+        padding: 4px 9px;
+        font-size: 12px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 4px;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .meta span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .meta span:nth-child(3) {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .program-row .cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        min-height: 30px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--line);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .program-row .cell::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 950;
+      }
+
+      .program-row .cell[data-label="관련도"],
+      .program-row .cell[data-label="조회수"] {
+        display: none !important;
+      }
+
+      .program-row .cell[data-label="상태"] {
+        border-top: 1px solid var(--line);
+      }
+
+      .badge,
+      .dday {
+        min-height: 30px;
+        padding: 5px 10px;
+        font-size: 13px;
+      }
+
+      .program-row .cell.muted,
+      .program-row .cell > *:last-child {
+        text-align: right;
+      }
+
+      .pagination {
+        margin-top: 12px;
+      }
+
+      .page-button {
+        min-width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 560px) and (pointer: coarse) {
+      .app {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .headline {
+        padding: 15px 14px 13px;
+      }
+
+      .stats {
+        gap: 6px;
+      }
+
+      .stat {
+        min-height: 61px;
+        padding: 8px 7px;
+      }
+
+      .stat strong {
+        font-size: 20px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .program-title {
+        font-size: 19px;
+      }
+
+      .modal {
+        padding: 0;
+        align-items: end;
+      }
+
+      .modal-panel {
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 18px 18px 0 0;
+      }
+
+      .modal-title {
+        font-size: 21px;
+      }
+
+      .field div {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+    }
+
+    @media (max-width: 390px) and (pointer: coarse) {
+      h1 {
+        font-size: 22px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .program-title {
+        font-size: 18px;
+      }
+    }
+
+
+
+    /* =========================
+       Mobile readability v5 - reference layout inspired
+       참고 프로젝트처럼 max-width + readable spacing + compact cards
+       ========================= */
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 1180px) {
+      body {
+        background:
+          radial-gradient(900px 360px at 50% -160px, rgba(31, 79, 134, 0.10), transparent 72%),
+          #eef4fb;
+      }
+
+      body::before,
+      body::after,
+      .app::before {
+        display: none !important;
+      }
+
+      .app {
+        width: min(100% - 28px, 880px) !important;
+        max-width: 880px !important;
+        margin: 0 auto !important;
+        padding: 12px 0 32px !important;
+      }
+
+      .topbar {
+        min-height: 46px;
+        padding: 4px 0 8px;
+      }
+
+      .brand {
+        font-size: 22px;
+        line-height: 1.05;
+      }
+
+      .brand small {
+        font-size: 12px;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 6px;
+      }
+
+      .headline,
+      .top-programs,
+      .program-row {
+        border-radius: 14px;
+        border: 1px solid #dbe7f5;
+        box-shadow: 0 16px 42px -28px rgba(22, 58, 107, 0.46);
+      }
+
+      .headline {
+        min-height: 0;
+        padding: 18px 18px 16px;
+        background: #fff;
+      }
+
+      .headline-kicker {
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      h1 {
+        margin: 9px 0 12px;
+        max-width: 18em;
+        font-size: clamp(25px, 3.6vw, 32px);
+        line-height: 1.25;
+        letter-spacing: -0.045em;
+        word-break: keep-all;
+      }
+
+      .benefit-strip {
+        gap: 6px;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .benefit-chip {
+        min-height: 27px;
+        padding: 4px 9px;
+        font-size: 12px;
+      }
+
+      .benefit-text {
+        flex-basis: 100%;
+        font-size: 14px;
+      }
+
+      .updated-at {
+        min-height: 32px;
+        margin-top: 10px;
+        font-size: 12px;
+        border-radius: 9px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .stat {
+        min-height: 68px;
+        padding: 10px 9px;
+        border-radius: 12px;
+      }
+
+      .stat span {
+        font-size: 12px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .stat strong {
+        margin-top: 6px;
+        font-size: 24px;
+        line-height: 1;
+      }
+
+      .top-programs-head {
+        padding: 13px 16px 10px;
+      }
+
+      .top-programs-head span {
+        font-size: 12px;
+      }
+
+      .top-programs-head strong {
+        font-size: 22px;
+      }
+
+      .top-item {
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 11px;
+        padding: 13px 16px;
+      }
+
+      .top-rank {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        font-size: 14px;
+      }
+
+      .top-name {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 16px;
+        line-height: 1.38;
+        letter-spacing: -0.025em;
+      }
+
+      .top-item:nth-child(n+4) {
+        display: none;
+      }
+
+      .toolbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+        margin: 13px 0 10px;
+      }
+
+      .search {
+        grid-column: 1 / -1;
+      }
+
+      .search,
+      .select {
+        height: 48px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 800;
+        background-color: #fff;
+      }
+
+      .tabs {
+        margin: 0 -14px;
+        padding: 2px 14px 11px;
+        gap: 8px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab {
+        height: 40px;
+        padding: 0 13px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .tab-count {
+        min-width: 22px;
+        height: 22px;
+        font-size: 12px;
+      }
+
+      .board {
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .board-head {
+        display: none !important;
+      }
+
+      #programList {
+        display: grid;
+        gap: 12px;
+      }
+
+      .program-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px 12px;
+        width: 100%;
+        padding: 16px 16px 15px;
+        background: #fff;
+        transform: none !important;
+      }
+
+      .program-main {
+        grid-column: 1 / -1;
+        min-width: 0;
+      }
+
+      .program-title {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 9px;
+        font-size: clamp(19px, 2.8vw, 23px);
+        line-height: 1.34;
+        letter-spacing: -0.045em;
+        word-break: keep-all;
+      }
+
+      .program-title .chip {
+        width: max-content;
+        max-width: 100%;
+        min-height: 27px;
+        padding: 4px 10px;
+        font-size: 12px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 4px;
+        color: #52647c;
+        font-size: 13px;
+        line-height: 1.45;
+        font-weight: 800;
+      }
+
+      .meta span {
+        display: block;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .meta span:nth-child(3) {
+        display: -webkit-box;
+        white-space: normal;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .meta span:nth-child(4) {
+        display: none;
+      }
+
+      .program-row .cell {
+        min-height: 36px;
+        padding-top: 9px;
+        border-top: 1px solid #e7eef8;
+        color: #263957;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+
+      .program-row .cell::before {
+        display: block;
+        margin-bottom: 4px;
+        content: attr(data-label);
+        color: #6b7c92;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .program-row .cell[data-label="상태"] {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 7px;
+      }
+
+      .program-row .cell[data-label="상태"]::before {
+        margin-right: auto;
+        margin-bottom: 0;
+      }
+
+      .program-row .cell[data-label="지역"] {
+        text-align: right;
+      }
+
+      .program-row .cell[data-label="신청기간"] {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .program-row .cell[data-label="신청기간"]::before {
+        margin-bottom: 0;
+      }
+
+      .program-row .cell[data-label="관련도"],
+      .program-row .cell[data-label="조회수"] {
+        display: none !important;
+      }
+
+      .badge,
+      .dday {
+        min-height: 30px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .pagination {
+        margin-top: 14px;
+      }
+
+      .page-button {
+        min-width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        font-size: 14px;
+      }
+
+      .empty {
+        border-radius: 14px;
+        background: #fff;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .app {
+        width: min(100% - 24px, 880px) !important;
+        padding-top: 10px !important;
+      }
+
+      .headline {
+        padding: 17px 16px 15px;
+      }
+
+      h1 {
+        max-width: none;
+        font-size: 25px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .stat {
+        min-height: 72px;
+        padding: 11px 12px;
+      }
+
+      .stat strong {
+        font-size: 25px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .top-item:nth-child(n+4) {
+        display: grid;
+      }
+
+      .top-name {
+        font-size: 16px;
+        -webkit-line-clamp: 2;
+      }
+
+      .program-row {
+        padding: 16px 15px;
+      }
+
+      .program-title {
+        font-size: 20px;
+      }
+
+      .modal {
+        padding: 0;
+        align-items: end;
+      }
+
+      .modal-panel {
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 18px 18px 0 0;
+      }
+
+      .modal-title {
+        font-size: 22px;
+        line-height: 1.4;
+      }
+
+      .modal-body {
+        padding: 18px 16px;
+      }
+
+      .field label {
+        font-size: 14px;
+      }
+
+      .field div {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .actions {
+        position: sticky;
+        bottom: 0;
+        grid-template-columns: 1fr 1fr;
+        padding: 11px 12px calc(11px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(10px);
+      }
+
+      .action {
+        min-height: 48px;
+        border-radius: 12px;
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      h1 {
+        font-size: 23px;
+      }
+
+      .program-title {
+        font-size: 19px;
+      }
+
+      .program-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      .program-row .cell[data-label="지역"] {
+        text-align: left;
+      }
+    }
+
+
+    /* =========================
+       Mobile one-glance v6
+       - first screen compact
+       - TOP 5 always shows all 5 rows
+       - no narrow centered column side-effect
+       ========================= */
+
+    @media (max-width: 1180px) {
+      .app {
+        width: min(100% - 24px, 880px) !important;
+        max-width: 880px !important;
+        padding-top: 8px !important;
+      }
+
+      .topbar {
+        min-height: 36px !important;
+        padding: 2px 0 6px !important;
+      }
+
+      .brand {
+        font-size: 19px !important;
+        line-height: 1 !important;
+      }
+
+      .brand small {
+        font-size: 11px !important;
+        margin-top: 1px !important;
+      }
+
+      .header {
+        gap: 9px !important;
+        margin-top: 4px !important;
+      }
+
+      .headline {
+        padding: 14px 15px 13px !important;
+        border-radius: 13px !important;
+      }
+
+      .headline-kicker {
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+      }
+
+      h1 {
+        margin: 8px 0 9px !important;
+        max-width: none !important;
+        font-size: clamp(22px, 3vw, 28px) !important;
+        line-height: 1.18 !important;
+        letter-spacing: -0.055em !important;
+      }
+
+      .benefit-strip {
+        gap: 5px !important;
+        line-height: 1.3 !important;
+      }
+
+      .benefit-chip {
+        min-height: 24px !important;
+        padding: 3px 8px !important;
+        font-size: 11px !important;
+      }
+
+      .benefit-text {
+        flex-basis: 100% !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .updated-at {
+        min-height: 28px !important;
+        margin-top: 8px !important;
+        padding: 4px 9px !important;
+        font-size: 11px !important;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 7px !important;
+        margin-top: 10px !important;
+      }
+
+      .stat {
+        min-height: 58px !important;
+        padding: 8px 8px !important;
+        border-radius: 11px !important;
+      }
+
+      .stat span {
+        font-size: 11px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.02em !important;
+      }
+
+      .stat strong {
+        margin-top: 4px !important;
+        font-size: 21px !important;
+        line-height: 1 !important;
+      }
+
+      .top-programs {
+        border-radius: 13px !important;
+        overflow: hidden !important;
+      }
+
+      .top-programs-head {
+        padding: 10px 14px 8px !important;
+      }
+
+      .top-programs-head span {
+        font-size: 11px !important;
+      }
+
+      .top-programs-head strong {
+        font-size: 20px !important;
+      }
+
+      .top-item,
+      .top-item:nth-child(n+4) {
+        display: grid !important;
+        grid-template-columns: 30px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px 14px !important;
+      }
+
+      .top-rank {
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 8px !important;
+        font-size: 13px !important;
+      }
+
+      .top-name {
+        font-size: 14px !important;
+        line-height: 1.32 !important;
+        letter-spacing: -0.035em !important;
+        white-space: normal !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+      }
+
+      .toolbar {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 8px !important;
+        margin: 10px 0 8px !important;
+      }
+
+      .search {
+        grid-column: 1 / -1 !important;
+      }
+
+      .search,
+      .select {
+        height: 44px !important;
+        border-radius: 11px !important;
+        font-size: 15px !important;
+        font-weight: 800 !important;
+      }
+
+      #sortSelect {
+        grid-column: 1 / -1 !important;
+      }
+
+      .tabs {
+        padding-bottom: 8px !important;
+        gap: 7px !important;
+      }
+
+      .tab {
+        height: 36px !important;
+        padding: 0 12px !important;
+        font-size: 13px !important;
+      }
+
+      .tab-count {
+        min-width: 20px !important;
+        height: 20px !important;
+        font-size: 11px !important;
+      }
+
+      #programList {
+        gap: 10px !important;
+      }
+
+      .program-row {
+        padding: 14px 14px 13px !important;
+        gap: 7px 10px !important;
+        border-radius: 13px !important;
+      }
+
+      .program-title {
+        margin-bottom: 7px !important;
+        font-size: clamp(18px, 2.5vw, 21px) !important;
+        line-height: 1.3 !important;
+      }
+
+      .program-title .chip {
+        min-height: 25px !important;
+        padding: 3px 9px !important;
+        font-size: 11px !important;
+      }
+
+      .meta {
+        gap: 2px !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .meta span:nth-child(1),
+      .meta span:nth-child(2) {
+        display: inline !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .meta span:nth-child(3) {
+        -webkit-line-clamp: 1 !important;
+      }
+
+      .program-row .cell {
+        min-height: 31px !important;
+        padding-top: 7px !important;
+        font-size: 13px !important;
+      }
+
+      .program-row .cell::before {
+        font-size: 11px !important;
+      }
+
+      .badge,
+      .dday {
+        min-height: 27px !important;
+        padding: 4px 9px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .app {
+        width: calc(100% - 20px) !important;
+      }
+
+      h1 {
+        font-size: 22px !important;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      }
+
+      .stat {
+        min-height: 56px !important;
+        padding: 7px 6px !important;
+      }
+
+      .stat span {
+        font-size: 10px !important;
+      }
+
+      .stat strong {
+        font-size: 20px !important;
+      }
+
+      .top-name {
+        font-size: 13px !important;
+        -webkit-line-clamp: 2 !important;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      .search,
+      #sortSelect {
+        grid-column: 1 / -1 !important;
+      }
+
+      .program-title {
+        font-size: 18px !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+
+    /* =========================================================
+       v7: iPhone first-view width/readability fix
+       - Apps Script/Safari에서 넓게 잡히는 느낌을 줄이기 위해
+         컨테이너는 화면 전체를 쓰되 내부 요소를 더 압축합니다.
+       - 긴 텍스트는 첫 화면에서 말줄임 처리합니다.
+       ========================================================= */
+    @media (max-width: 1180px) and (pointer: coarse) {
+      html {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        -webkit-text-size-adjust: 100% !important;
+      }
+
+      body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        line-height: 1.45 !important;
+      }
+
+      .app {
+        width: auto !important;
+        max-width: none !important;
+        margin-left: 12px !important;
+        margin-right: 12px !important;
+        padding: 8px 0 28px !important;
+      }
+
+      .topbar {
+        min-height: 38px !important;
+        padding: 0 0 5px !important;
+      }
+
+      .brand {
+        font-size: 18px !important;
+        line-height: 1.05 !important;
+      }
+
+      .brand small {
+        font-size: 11px !important;
+        margin-top: 1px !important;
+      }
+
+      .header {
+        gap: 10px !important;
+        margin-top: 6px !important;
+      }
+
+      .headline,
+      .top-programs {
+        border-radius: 12px !important;
+      }
+
+      .headline {
+        padding: 14px 14px 12px !important;
+        min-height: 0 !important;
+      }
+
+      .headline-kicker {
+        font-size: 11px !important;
+        gap: 6px !important;
+      }
+
+      .headline-kicker::before {
+        width: 6px !important;
+        height: 6px !important;
+      }
+
+      h1 {
+        margin: 7px 0 8px !important;
+        font-size: clamp(21px, 5.4vw, 25px) !important;
+        line-height: 1.16 !important;
+        letter-spacing: -0.055em !important;
+        word-break: keep-all !important;
+      }
+
+      .benefit-strip {
+        gap: 5px !important;
+        font-size: 12px !important;
+      }
+
+      .benefit-chip {
+        min-height: 22px !important;
+        padding: 3px 7px !important;
+        font-size: 11px !important;
+      }
+
+      .benefit-text {
+        display: block !important;
+        width: 100% !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .updated-at {
+        min-height: 27px !important;
+        margin-top: 8px !important;
+        padding: 4px 9px !important;
+        font-size: 11px !important;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 7px !important;
+        margin-top: 10px !important;
+      }
+
+      .stat {
+        min-height: 54px !important;
+        padding: 7px 6px !important;
+        border-radius: 10px !important;
+      }
+
+      .stat span {
+        font-size: 10px !important;
+        line-height: 1.15 !important;
+        white-space: nowrap !important;
+      }
+
+      .stat strong {
+        margin-top: 4px !important;
+        font-size: 19px !important;
+        line-height: 1 !important;
+      }
+
+      .top-programs {
+        min-height: 0 !important;
+      }
+
+      .top-programs-head {
+        padding: 11px 13px 8px !important;
+      }
+
+      .top-programs-head span {
+        font-size: 11px !important;
+      }
+
+      .top-programs-head strong {
+        font-size: 20px !important;
+      }
+
+      .top-item,
+      .top-item:nth-child(n+4) {
+        display: grid !important;
+        grid-template-columns: 28px minmax(0, 1fr) !important;
+        min-height: 41px !important;
+        padding: 8px 13px !important;
+        gap: 9px !important;
+      }
+
+      .top-rank {
+        width: 26px !important;
+        height: 26px !important;
+        border-radius: 8px !important;
+        font-size: 12px !important;
+      }
+
+      .top-name {
+        display: block !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 13px !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.04em !important;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 7px !important;
+        margin: 10px 0 8px !important;
+      }
+
+      .search,
+      #sortSelect {
+        grid-column: 1 / -1 !important;
+      }
+
+      .search,
+      .select {
+        height: 42px !important;
+        border-radius: 10px !important;
+        font-size: 15px !important;
+        font-weight: 800 !important;
+      }
+
+      .tabs {
+        margin-left: -12px !important;
+        margin-right: -12px !important;
+        padding: 1px 12px 8px !important;
+        gap: 6px !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+      }
+
+      .tabs::-webkit-scrollbar { display: none !important; }
+
+      .tab {
+        height: 34px !important;
+        padding: 0 11px !important;
+        border-radius: 999px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+      }
+
+      .tab-count {
+        min-width: 19px !important;
+        height: 19px !important;
+        font-size: 10px !important;
+      }
+
+      #programList {
+        gap: 9px !important;
+      }
+
+      .program-row {
+        padding: 13px 13px 12px !important;
+        border-radius: 12px !important;
+        gap: 8px !important;
+      }
+
+      .program-title {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .program-title span:last-child {
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        font-size: 18px !important;
+        line-height: 1.28 !important;
+        letter-spacing: -0.055em !important;
+      }
+
+      .program-title .chip {
+        width: fit-content !important;
+        max-width: 100% !important;
+        min-height: 23px !important;
+        padding: 3px 8px !important;
+        font-size: 11px !important;
+      }
+
+      .meta {
+        display: grid !important;
+        gap: 2px !important;
+        font-size: 11px !important;
+        line-height: 1.35 !important;
+      }
+
+      .meta span {
+        display: block !important;
+        max-width: 100% !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .program-row .cell {
+        min-height: 27px !important;
+        padding-top: 6px !important;
+        font-size: 12px !important;
+      }
+
+      .program-row .cell::before {
+        font-size: 11px !important;
+      }
+
+      .badge,
+      .dday {
+        min-height: 25px !important;
+        padding: 3px 8px !important;
+        font-size: 11px !important;
+      }
+
+      .program-row .cell[data-label="관련도"],
+      .program-row .cell[data-label="조회수"] {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 390px) and (pointer: coarse) {
+      .app {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .stat {
+        min-height: 50px !important;
+      }
+
+      .program-title span:last-child {
+        font-size: 17px !important;
+      }
+    }
+
+
+    /* =========================================================
+       v8: mobile balanced font-up patch
+       - v7 layout is kept.
+       - Text is increased slightly for iPhone readability.
+       - Heights are adjusted only where needed to avoid crowding.
+       ========================================================= */
+    @media (max-width: 1180px) and (pointer: coarse) {
+      body {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+      }
+
+      .brand {
+        font-size: 19px !important;
+      }
+
+      .brand small {
+        font-size: 12px !important;
+      }
+
+      .headline-kicker {
+        font-size: 12px !important;
+        font-weight: 900 !important;
+      }
+
+      h1 {
+        font-size: clamp(23px, 5.8vw, 28px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.052em !important;
+      }
+
+      .benefit-chip {
+        min-height: 24px !important;
+        font-size: 12px !important;
+        padding: 3px 8px !important;
+      }
+
+      .benefit-text {
+        font-size: 13px !important;
+        font-weight: 900 !important;
+      }
+
+      .updated-at {
+        min-height: 29px !important;
+        font-size: 12px !important;
+      }
+
+      .stat {
+        min-height: 58px !important;
+        padding: 8px 7px !important;
+      }
+
+      .stat span {
+        font-size: 11px !important;
+        font-weight: 900 !important;
+      }
+
+      .stat strong {
+        font-size: 22px !important;
+      }
+
+      .top-programs-head span {
+        font-size: 12px !important;
+      }
+
+      .top-programs-head strong {
+        font-size: 22px !important;
+      }
+
+      .top-item,
+      .top-item:nth-child(n+4) {
+        min-height: 44px !important;
+        padding-top: 9px !important;
+        padding-bottom: 9px !important;
+      }
+
+      .top-rank {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 13px !important;
+      }
+
+      .top-name {
+        font-size: 14px !important;
+        line-height: 1.28 !important;
+        font-weight: 950 !important;
+      }
+
+      .search,
+      .select {
+        height: 45px !important;
+        font-size: 16px !important;
+        font-weight: 850 !important;
+      }
+
+      .tab {
+        height: 36px !important;
+        font-size: 13px !important;
+        font-weight: 900 !important;
+      }
+
+      .tab-count {
+        min-width: 20px !important;
+        height: 20px !important;
+        font-size: 11px !important;
+      }
+
+      .program-row {
+        padding: 14px 14px 13px !important;
+      }
+
+      .program-title span:last-child {
+        font-size: 19px !important;
+        line-height: 1.3 !important;
+        font-weight: 950 !important;
+        letter-spacing: -0.052em !important;
+      }
+
+      .program-title .chip {
+        min-height: 25px !important;
+        font-size: 12px !important;
+        padding: 3px 9px !important;
+      }
+
+      .meta {
+        font-size: 12px !important;
+        line-height: 1.42 !important;
+        font-weight: 800 !important;
+      }
+
+      .program-row .cell {
+        min-height: 30px !important;
+        font-size: 13px !important;
+        font-weight: 900 !important;
+      }
+
+      .program-row .cell::before {
+        font-size: 12px !important;
+        font-weight: 950 !important;
+      }
+
+      .badge,
+      .dday {
+        min-height: 27px !important;
+        font-size: 12px !important;
+        font-weight: 950 !important;
+        padding: 4px 9px !important;
+      }
+
+      .modal-title {
+        font-size: 20px !important;
+        line-height: 1.42 !important;
+      }
+
+      .field label {
+        font-size: 13px !important;
+      }
+
+      .field div {
+        font-size: 15px !important;
+        line-height: 1.65 !important;
+      }
+
+      .action {
+        min-height: 49px !important;
+        font-size: 15px !important;
+      }
+    }
+
+    @media (max-width: 390px) and (pointer: coarse) {
+      h1 {
+        font-size: 23px !important;
+      }
+
+      .top-name {
+        font-size: 13.5px !important;
+      }
+
+      .program-title span:last-child {
+        font-size: 18px !important;
+      }
+
+      .meta {
+        font-size: 11.5px !important;
+      }
+    }
+
+
+
+    /* =========================================================
+       v9: mobile-only global readability up
+       - Desktop/tablet layout is untouched.
+       - Only coarse pointer mobile screens get larger text.
+       ========================================================= */
+    @media (max-width: 1180px) and (pointer: coarse) {
+      html {
+        -webkit-text-size-adjust: 115% !important;
+        text-size-adjust: 115% !important;
+      }
+
+      body {
+        font-size: 17px !important;
+        line-height: 1.58 !important;
+      }
+
+      .brand {
+        font-size: 21px !important;
+        line-height: 1.1 !important;
+      }
+
+      .brand small {
+        font-size: 13px !important;
+      }
+
+      .headline-kicker {
+        font-size: 13px !important;
+      }
+
+      h1 {
+        font-size: clamp(26px, 6.2vw, 31px) !important;
+        line-height: 1.22 !important;
+        letter-spacing: -0.055em !important;
+      }
+
+      .benefit-chip {
+        min-height: 27px !important;
+        font-size: 13px !important;
+        padding: 4px 9px !important;
+      }
+
+      .benefit-text {
+        font-size: 14px !important;
+        line-height: 1.45 !important;
+      }
+
+      .updated-at {
+        min-height: 32px !important;
+        font-size: 13px !important;
+        padding: 5px 10px !important;
+      }
+
+      .stat {
+        min-height: 63px !important;
+        padding: 9px 8px !important;
+      }
+
+      .stat span {
+        font-size: 12px !important;
+      }
+
+      .stat strong {
+        font-size: 25px !important;
+        line-height: 1.05 !important;
+      }
+
+      .top-programs-head span {
+        font-size: 13px !important;
+      }
+
+      .top-programs-head strong {
+        font-size: 24px !important;
+      }
+
+      .top-item,
+      .top-item:nth-child(n+4) {
+        min-height: 48px !important;
+        padding: 10px 14px !important;
+      }
+
+      .top-rank {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 14px !important;
+      }
+
+      .top-name {
+        font-size: 15.5px !important;
+        line-height: 1.3 !important;
+        font-weight: 950 !important;
+      }
+
+      .search,
+      .select {
+        height: 48px !important;
+        font-size: 17px !important;
+        font-weight: 850 !important;
+      }
+
+      .tab {
+        height: 40px !important;
+        font-size: 14.5px !important;
+        font-weight: 950 !important;
+      }
+
+      .tab-count {
+        min-width: 22px !important;
+        height: 22px !important;
+        font-size: 12px !important;
+      }
+
+      .program-row {
+        padding: 16px 15px 15px !important;
+      }
+
+      .program-title span:last-child {
+        font-size: 21px !important;
+        line-height: 1.32 !important;
+        font-weight: 950 !important;
+        letter-spacing: -0.055em !important;
+      }
+
+      .program-title .chip,
+      .chip {
+        min-height: 27px !important;
+        font-size: 13px !important;
+        padding: 4px 10px !important;
+      }
+
+      .meta {
+        font-size: 13px !important;
+        line-height: 1.48 !important;
+        font-weight: 850 !important;
+      }
+
+      .program-row .cell {
+        min-height: 34px !important;
+        font-size: 14.5px !important;
+        line-height: 1.35 !important;
+        font-weight: 900 !important;
+      }
+
+      .program-row .cell::before {
+        font-size: 13px !important;
+      }
+
+      .badge,
+      .dday {
+        min-height: 30px !important;
+        font-size: 13.5px !important;
+        padding: 5px 11px !important;
+      }
+
+      .score {
+        min-height: 30px !important;
+        font-size: 14px !important;
+      }
+
+      .page-button {
+        min-width: 42px !important;
+        height: 42px !important;
+        font-size: 14.5px !important;
+      }
+
+      .empty {
+        font-size: 15px !important;
+      }
+
+      .modal-title {
+        font-size: 22px !important;
+        line-height: 1.43 !important;
+      }
+
+      .modal-body {
+        font-size: 16px !important;
+      }
+
+      .field label {
+        font-size: 14px !important;
+      }
+
+      .field div {
+        font-size: 16.5px !important;
+        line-height: 1.68 !important;
+      }
+
+      .action {
+        min-height: 52px !important;
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 390px) and (pointer: coarse) {
+      h1 {
+        font-size: 25px !important;
+      }
+
+      .top-name {
+        font-size: 15px !important;
+      }
+
+      .program-title span:last-child {
+        font-size: 20px !important;
+      }
+
+      .meta {
+        font-size: 12.5px !important;
+      }
+
+      .program-row .cell {
+        font-size: 14px !important;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="https://www.kmbridge.org/" target="_blank" rel="noopener noreferrer" aria-label="K-Mobility 브릿지재단 홈페이지로 이동">
+        <span>K-Mobility<small>브릿지 재단</small></span>
+      </a>
+    </header>
+
+    <section class="header" aria-labelledby="page-title">
+      <div class="headline">
+        <div class="headline-kicker">모빌리티 지원사업 대시보드</div>
+        <h1 id="page-title">모빌리티 협력사를 위한 정부 지원 사업, 지금 바로 확인하세요</h1>
+        <div class="benefit-strip" aria-label="지원 분야">
+          <span class="benefit-chip">수출</span>
+          <span class="benefit-chip">고용</span>
+          <span class="benefit-chip">인증</span>
+          <span class="benefit-chip">기술개발</span>
+          <span class="benefit-text">신청 가능한 공고와 마감 임박 사업을 빠르게 확인하세요.</span>
+        </div>
+        <div class="updated-at">최근 업데이트 <time id="updatedAt">-</time></div>
+        <div class="stats" aria-label="지원사업 현황">
+          <button class="stat" type="button" data-stat-status="">
+            <span>전체 공고</span>
+            <strong id="statTotal">0</strong>
+          </button>
+          <button class="stat" type="button" data-stat-status="open">
+            <span>접수 가능</span>
+            <strong id="statOpen">0</strong>
+          </button>
+          <button class="stat" type="button" data-stat-status="closing">
+            <span>마감 임박</span>
+            <strong id="statClosing">0</strong>
+          </button>
+          <button class="stat" type="button" data-stat-status="ended">
+            <span>마감</span>
+            <strong id="statEnded">0</strong>
+          </button>
+        </div>
+      </div>
+
+      <aside class="top-programs" aria-labelledby="weeklyTopTitle">
+        <div class="top-programs-head">
+          <span>마감 전 추천 공고</span>
+          <strong id="weeklyTopTitle">TOP 5</strong>
+        </div>
+        <div id="weeklyTopList" class="top-list"></div>
+      </aside>
+    </section>
+
+    <section class="toolbar" aria-label="검색 및 필터">
+      <label class="sr-only" for="searchInput">검색</label>
+      <input id="searchInput" class="search" type="search" placeholder="사업명, 지원내용, 키워드, 지역으로 검색">
+
+      <label class="sr-only" for="typeFilter">사업유형</label>
+      <select id="typeFilter" class="select">
+        <option value="">전체 유형</option>
+      </select>
+
+      <label class="sr-only" for="regionFilter">지역</label>
+      <select id="regionFilter" class="select">
+        <option value="">전체 지역</option>
+      </select>
+
+      <label class="sr-only" for="sortSelect">정렬</label>
+      <select id="sortSelect" class="select">
+        <option value="deadline">추천 정렬</option>
+        <option value="score">관련도 높은순</option>
+        <option value="title">사업명순</option>
+      </select>
+    </section>
+
+    <div class="tabs" role="tablist" aria-label="공고 상태">
+      <button class="tab" type="button" data-status="" aria-selected="true"><span>전체</span><span id="tabCountAll" class="tab-count">0</span></button>
+      <button class="tab" type="button" data-status="open" aria-selected="false"><span>접수중</span><span id="tabCountOpen" class="tab-count">0</span></button>
+      <button class="tab" type="button" data-status="closing" aria-selected="false"><span>마감임박</span><span id="tabCountClosing" class="tab-count">0</span></button>
+      <button class="tab" type="button" data-status="always" aria-selected="false"><span>상시접수</span><span id="tabCountAlways" class="tab-count">0</span></button>
+      <button class="tab" type="button" data-status="ended" aria-selected="false"><span>마감</span><span id="tabCountEnded" class="tab-count">0</span></button>
+    </div>
+
+    <main class="content">
+      <div id="apiNotice" class="notice" hidden></div>
+      <section class="board" aria-label="지원사업 목록">
+        <div class="board-head" aria-hidden="true">
+          <div>지원사업명</div>
+          <div>상태</div>
+          <div>지역</div>
+          <div>신청기간</div>
+          <div>관련도 <span class="info-tip" tabindex="0" data-tooltip="모빌리티 산업과 관련도가 높은 지원사업을 점수화한 로직입니다.">?</span></div>
+          <div>조회수</div>
+        </div>
+        <div id="programList"><div class="empty">데이터를 불러오는 중입니다.</div></div>
+      </section>
+      <nav id="pagination" class="pagination" aria-label="지원사업 페이지"></nav>
+    </main>
+  </div>
+
+  <div id="programModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <section class="modal-panel">
+      <div class="modal-top">
+        <div class="modal-toolbar">
+          <span id="detailStatus" class="badge open">접수중</span>
+          <button id="modalBack" class="modal-close" type="button" aria-label="상세 팝업 닫기">X</button>
+        </div>
+        <h2 id="modalTitle" class="modal-title">지원사업 상세</h2>
+        <div class="modal-meta">
+          <span id="detailType" class="chip">사업유형</span>
+          <span id="detailRegion" class="chip">지역</span>
+          <span id="detailPeriod" class="chip">신청기간</span>
+          <span id="detailScore" class="chip">관련도</span>
+          <span id="detailViews" class="chip">조회수 0</span>
+          <span id="detailOriginalViews" class="chip">원문보기 0</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>기관</label>
+          <div id="detailAgency">-</div>
+        </div>
+        <div class="field">
+          <label>지원대상</label>
+          <div id="detailTarget">-</div>
+        </div>
+        <div class="field">
+          <label>지원내용</label>
+          <div id="detailContent">-</div>
+        </div>
+        <div class="field">
+          <label>접수방법</label>
+          <div id="detailApply">-</div>
+        </div>
+        <div class="field">
+          <label>문의처</label>
+          <div id="detailContact">-</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="modalBackBottom" class="action" type="button">목록으로 돌아가기</button>
+        <a id="applyLink" class="action primary" href="#" target="_blank" rel="noreferrer">원문 보기</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- 앱스크립트 웹앱 URL 설정 (config.js 파일에서 API_URL 값을 수정하세요) -->
+  <script src="config.js"></script>
+
+  <script>
+    // ── GitHub Pages 정적 버전 ──────────────────────────────
+    // 데이터는 Apps Script 웹앱(JSON API)에서 fetch로 받아옵니다.
+    // API_URL 은 config.js 에 정의되어 있습니다.
+    const API_URL = String(window.APP_CONFIG && window.APP_CONFIG.API_URL || "").trim();
+
+    let programs = [];
+    let dataUpdatedAt = "";
+    let loadErrorMessage = "";
+
+    const state = {
+      search: "",
+      type: "",
+      region: "",
+      status: "",
+      sort: "deadline",
+      page: 1,
+      selected: null,
+      modalOpen: false
+    };
+
+    const PAGE_SIZE = 10;
+    const MAX_PAGE_BUTTONS = 7;
+
+    const listEl = document.getElementById("programList");
+    const paginationEl = document.getElementById("pagination");
+    const noticeEl = document.getElementById("apiNotice");
+    const searchInput = document.getElementById("searchInput");
+    const typeFilter = document.getElementById("typeFilter");
+    const regionFilter = document.getElementById("regionFilter");
+    const sortSelect = document.getElementById("sortSelect");
+    const tabs = [...document.querySelectorAll(".tab")];
+    const statButtons = [...document.querySelectorAll(".stat")];
+    const weeklyTopList = document.getElementById("weeklyTopList");
+    const modal = document.getElementById("programModal");
+    const modalPanel = modal.querySelector(".modal-panel");
+    const modalBack = document.getElementById("modalBack");
+    const modalBackBottom = document.getElementById("modalBackBottom");
+
+    // ── API 호출 헬퍼 ──────────────────────────────
+
+    function isApiConfigured() {
+      return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec/.test(API_URL);
+    }
+
+    function buildApiUrl(params) {
+      const url = new URL(API_URL);
+      Object.entries(params || {}).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+          url.searchParams.set(key, String(value));
+        }
+      });
+      // 브라우저/프록시 캐시 방지
+      url.searchParams.set("_", String(Date.now()));
+      return url.toString();
+    }
+
+    async function callApi(params) {
+      if (!isApiConfigured()) {
+        throw new Error("config.js 의 API_URL 이 설정되지 않았습니다.");
+      }
+
+      const response = await fetch(buildApiUrl(params), {
+        method: "GET",
+        redirect: "follow",
+        cache: "no-store"
+      });
+
+      if (!response.ok) {
+        throw new Error(`API 응답 오류 (HTTP ${response.status})`);
+      }
+
+      const text = await response.text();
+
+      try {
+        return JSON.parse(text);
+      } catch (error) {
+        throw new Error("API 응답이 JSON 형식이 아닙니다. 웹앱 배포 액세스 권한이 '모든 사용자'인지 확인하세요.");
+      }
+    }
+
+    function showNotice(html) {
+      noticeEl.innerHTML = html;
+      noticeEl.hidden = false;
+    }
+
+    function hideNotice() {
+      noticeEl.hidden = true;
+      noticeEl.innerHTML = "";
+    }
+
+    // ── 상태/정렬 유틸 ──────────────────────────────
+
+    function startOfToday() {
+      const date = new Date();
+      date.setHours(0, 0, 0, 0);
+      return date;
+    }
+
+    function parsePeriod(period) {
+      const raw = String(period || "");
+      const dates = raw.match(/\d{4}[.-]\d{2}[.-]\d{2}/g) || [];
+      return {
+        start: dates[0] ? new Date(`${dates[0].replaceAll(".", "-")}T00:00:00`) : null,
+        end: dates[1] ? new Date(`${dates[1].replaceAll(".", "-")}T23:59:59`) : null
+      };
+    }
+
+    function getProgramStatus(program) {
+      const period = String(program.period || "");
+      const sheetStatus = String(program.sheetStatus || "").trim();
+      const today = startOfToday();
+      const { start, end } = parsePeriod(period);
+
+      // 신청기간 종료일이 지났으면 시트의 마감상태가 진행중이어도 HTML에서는 자동 마감 처리
+      if (end && end < today) {
+        return { key: "ended", label: "마감", className: "ended", days: null };
+      }
+
+      if (sheetStatus.includes("마감") && !sheetStatus.includes("진행")) {
+        return { key: "ended", label: "마감", className: "ended", days: null };
+      }
+
+      if (period.includes("상시") || period.includes("예산")) {
+        return { key: "always", label: "상시접수", className: "always", days: null };
+      }
+
+      if (sheetStatus.includes("확인")) {
+        return { key: "confirm", label: "확인필요", className: "confirm", days: null };
+      }
+
+      if (start && start > today) {
+        return { key: "open", label: "접수예정", className: "open", days: null };
+      }
+
+      if (end) {
+        const days = Math.ceil((end - today) / 86400000);
+        if (days <= 7) {
+          return { key: "closing", label: "접수중", className: "closing", days };
+        }
+        return { key: "open", label: "접수중", className: "open", days };
+      }
+
+      return { key: "confirm", label: "확인필요", className: "confirm", days: null };
+    }
+
+    function firstType(type) {
+      return String(type || "").split(/[\/,]/)[0].trim() || "기타";
+    }
+
+    function extractFirstUrl(text) {
+      const match = String(text || "").match(/https?:\/\/[^\s]+|mailto:[^\s]+/);
+      return match ? match[0] : "";
+    }
+
+    function truncate(text, length) {
+      const value = String(text || "");
+      return value.length > length ? `${value.slice(0, length - 1)}…` : value;
+    }
+
+    function normalize(value) {
+      return String(value || "").toLowerCase().replace(/\s+/g, "");
+    }
+
+    function formatNumber(value) {
+      return Number(value || 0).toLocaleString("ko-KR");
+    }
+
+    function typeClass(type) {
+      if (type.includes("수출")) return "type-export";
+      if (type.includes("인력") || type.includes("고용") || type.includes("교육")) return "type-hr";
+      if (type.includes("기술") || type.includes("시험") || type.includes("인증") || type.includes("시제품") || type.includes("R&D")) return "type-tech";
+      if (type.includes("설비") || type.includes("투자") || type.includes("금융") || type.includes("자금")) return "type-invest";
+      return "type-export";
+    }
+
+    function formatCompactPeriod(period) {
+      const raw = String(period || "");
+      const dates = raw.match(/\d{4}[.-]\d{2}[.-]\d{2}/g) || [];
+      if (dates.length >= 2) {
+        const startParts = dates[0].replaceAll(".", "-").split("-");
+        const endParts = dates[1].replaceAll(".", "-").split("-");
+        const start = `'${startParts[0].slice(2)}.${startParts[1]}.${startParts[2]}`;
+        const end = startParts[0] === endParts[0] ? `${endParts[1]}.${endParts[2]}` : `'${endParts[0].slice(2)}.${endParts[1]}.${endParts[2]}`;
+        return `${start} ~ ${end}`;
+      }
+      return period || "-";
+    }
+
+    function ddayLabel(status) {
+      if (status.key !== "closing" || status.days === null) return "";
+      return status.days <= 0 ? "D-Day" : `D-${status.days}`;
+    }
+
+    function hydrateFilters() {
+      typeFilter.length = 1;
+      regionFilter.length = 1;
+
+      const types = [...new Set(programs.map(program => firstType(program.type)))].filter(Boolean).sort((a, b) => a.localeCompare(b, "ko"));
+      const regions = [...new Set(programs.map(program => program.region).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ko"));
+
+      for (const type of types) {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        typeFilter.appendChild(option);
+      }
+
+      for (const region of regions) {
+        const option = document.createElement("option");
+        option.value = region;
+        option.textContent = region;
+        regionFilter.appendChild(option);
+      }
+    }
+
+    function urgencyBonus(program) {
+      const status = program.status || getProgramStatus(program);
+      if (status.key === "ended") return -9999;
+      if (status.key === "closing" && status.days !== null) {
+        if (status.days <= 3) return 10;
+        if (status.days <= 7) return 5;
+      }
+      return 0;
+    }
+
+    function recommendationScore(program) {
+      return Number(program.score || 0) + urgencyBonus(program);
+    }
+
+    function endTime(program) {
+      return parsePeriod(program.period).end?.getTime() ?? Number.MAX_SAFE_INTEGER;
+    }
+
+    function startTime(program) {
+      return parsePeriod(program.period).start?.getTime() ?? Number.MAX_SAFE_INTEGER;
+    }
+
+    function statusPriority(program) {
+      const status = program.status || getProgramStatus(program);
+      // 전체 탭 추천 정렬 우선순위:
+      // 마감임박 > 접수중/접수예정 > 상시접수 > 확인필요 > 마감
+      if (status.key === "closing") return 1;
+      if (status.key === "open") return 2;
+      if (status.key === "always") return 3;
+      if (status.key === "confirm") return 4;
+      if (status.key === "ended") return 5;
+      return 6;
+    }
+
+    function compareDefault(a, b) {
+      const aStatus = a.status || getProgramStatus(a);
+      const bStatus = b.status || getProgramStatus(b);
+
+      // 마감 탭: 최근 마감일 순, 같은 경우 관련도 높은 순
+      if (state.status === "ended") {
+        return endTime(b) - endTime(a) || b.score - a.score || a.title.localeCompare(b.title, "ko");
+      }
+
+      // 상시접수 탭: 관련도 높은 순, 같은 경우 등록일 최신순
+      if (state.status === "always") {
+        return b.score - a.score || String(b.registeredAt || "").localeCompare(String(a.registeredAt || "")) || a.title.localeCompare(b.title, "ko");
+      }
+
+      // 마감임박/접수중 탭: D-Day 가까운 순, 같은 경우 관련도 높은 순
+      if (state.status === "closing" || state.status === "open") {
+        return endTime(a) - endTime(b) || b.score - a.score || a.title.localeCompare(b.title, "ko");
+      }
+
+      // 전체 탭: 마감 전 공고 우선, 상태 우선순위, 마감일 가까운 순, 관련도 높은 순
+      const priorityDiff = statusPriority(a) - statusPriority(b);
+      if (priorityDiff !== 0) return priorityDiff;
+
+      if (aStatus.key === "ended" && bStatus.key === "ended") {
+        return endTime(b) - endTime(a) || b.score - a.score || a.title.localeCompare(b.title, "ko");
+      }
+
+      if (aStatus.key === "always" && bStatus.key === "always") {
+        return b.score - a.score || String(b.registeredAt || "").localeCompare(String(a.registeredAt || "")) || a.title.localeCompare(b.title, "ko");
+      }
+
+      if (aStatus.key === "confirm" && bStatus.key === "confirm") {
+        return b.score - a.score || String(b.registeredAt || "").localeCompare(String(a.registeredAt || "")) || a.title.localeCompare(b.title, "ko");
+      }
+
+      return endTime(a) - endTime(b) || b.score - a.score || a.title.localeCompare(b.title, "ko");
+    }
+
+    function filteredPrograms() {
+      const query = normalize(state.search);
+      const rows = programs
+        .map(program => ({ ...program, status: getProgramStatus(program) }))
+        .filter(program => {
+          const haystack = normalize([
+            program.title,
+            program.target,
+            program.content,
+            program.agency,
+            program.ministry,
+            program.region,
+            program.type,
+            program.keywords
+          ].join(" "));
+
+          const matchesSearch = !query || haystack.includes(query);
+          const matchesType = !state.type || firstType(program.type) === state.type;
+          const matchesRegion = !state.region || program.region === state.region;
+
+          // 전체 탭에서는 전체 공고 표시, 탭 선택 시에만 상태별 필터 적용
+          const matchesStatus = state.status
+            ? program.status.key === state.status
+            : true;
+
+          return matchesSearch && matchesType && matchesRegion && matchesStatus;
+        });
+
+      rows.sort((a, b) => {
+        if (state.sort === "score") {
+          return b.score - a.score || compareDefault(a, b);
+        }
+
+        if (state.sort === "title") {
+          return a.title.localeCompare(b.title, "ko");
+        }
+
+        return compareDefault(a, b);
+      });
+
+      return rows;
+    }
+
+    function renderStats() {
+      const withStatus = programs.map(program => getProgramStatus(program));
+      const counts = {
+        all: withStatus.length,
+        open: withStatus.filter(status => status.key === "open").length,
+        closing: withStatus.filter(status => status.key === "closing").length,
+        always: withStatus.filter(status => status.key === "always").length,
+        ended: withStatus.filter(status => status.key === "ended").length
+      };
+
+      document.getElementById("statTotal").textContent = counts.all;
+      document.getElementById("statOpen").textContent = counts.open;
+      document.getElementById("statClosing").textContent = counts.closing ? counts.closing : "현재 없음";
+      document.getElementById("statEnded").textContent = counts.ended;
+
+      document.getElementById("tabCountAll").textContent = counts.all;
+      document.getElementById("tabCountOpen").textContent = counts.open;
+      document.getElementById("tabCountClosing").textContent = counts.closing;
+      document.getElementById("tabCountAlways").textContent = counts.always;
+      document.getElementById("tabCountEnded").textContent = counts.ended;
+    }
+
+    function syncStatusControls() {
+      tabs.forEach(tab => tab.setAttribute("aria-selected", String(tab.dataset.status === state.status)));
+      statButtons.forEach(button => button.classList.toggle("is-active", button.dataset.statStatus === state.status));
+    }
+
+    function renderUpdatedAt() {
+      const sourceDate = dataUpdatedAt ? new Date(dataUpdatedAt) : new Date();
+      const date = Number.isNaN(sourceDate.getTime()) ? new Date() : sourceDate;
+      document.getElementById("updatedAt").textContent = date.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      });
+    }
+
+    function updateControlStates() {
+      searchInput.classList.toggle("is-active", Boolean(state.search));
+      typeFilter.classList.toggle("is-active", Boolean(state.type));
+      regionFilter.classList.toggle("is-active", Boolean(state.region));
+      sortSelect.classList.toggle("is-active", state.sort !== "deadline");
+    }
+
+    function setStatusFilter(status) {
+      state.status = status;
+      state.page = 1;
+      syncStatusControls();
+      renderList();
+    }
+
+    function renderWeeklyTopPrograms() {
+      const rows = programs
+        .map(program => ({ ...program, status: getProgramStatus(program) }))
+        .filter(program => program.status.key !== "ended")
+        .sort((a, b) => recommendationScore(b) - recommendationScore(a) || endTime(a) - endTime(b) || b.score - a.score || a.title.localeCompare(b.title, "ko"))
+        .slice(0, 5);
+
+      weeklyTopList.innerHTML = "";
+
+      if (!rows.length) {
+        weeklyTopList.innerHTML = '<div class="empty">표시할 공고가 없습니다.</div>';
+        return;
+      }
+
+      rows.forEach((program, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "top-item";
+        button.innerHTML = `
+          <span class="top-rank">${index + 1}</span>
+          <span class="top-name">${escapeHtml(program.title)}</span>
+        `;
+        button.addEventListener("click", () => openProgramModal(program));
+        weeklyTopList.appendChild(button);
+      });
+    }
+
+    function renderList() {
+      if (loadErrorMessage) {
+        listEl.innerHTML = `<div class="empty">${escapeHtml(loadErrorMessage)}</div>`;
+        renderPagination(0);
+        return;
+      }
+
+      const rows = filteredPrograms();
+      if (!rows.length) {
+        const message = state.status === "closing"
+          ? "현재 마감 임박 공고가 없습니다."
+          : state.status === "ended"
+            ? "마감된 공고가 없습니다."
+            : "조건에 맞는 지원사업이 없습니다.";
+        listEl.innerHTML = `<div class="empty">${message}</div>`;
+        renderPagination(0);
+        return;
+      }
+
+      listEl.innerHTML = "";
+      const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+      state.page = Math.min(Math.max(1, state.page), totalPages);
+      const pageStart = (state.page - 1) * PAGE_SIZE;
+      const visibleRows = rows.slice(pageStart, pageStart + PAGE_SIZE);
+
+      for (const program of visibleRows) {
+        const primaryType = firstType(program.type);
+        const deadline = ddayLabel(program.status);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `program-row${state.selected?.title === program.title ? " is-active" : ""}`;
+        button.innerHTML = `
+          <div class="program-main">
+            <div class="program-title">
+              <span class="chip type-chip ${typeClass(primaryType)}">${escapeHtml(primaryType)}</span>
+              <span>${escapeHtml(program.title)}</span>
+            </div>
+            <div class="meta">
+              <span>소관 ${escapeHtml(program.ministry || "-")}</span>
+              <span>수행 ${escapeHtml(program.agency || "-")}</span>
+              <span>${escapeHtml(truncate(program.target, 68))}</span>
+              <span>관련도 ${formatNumber(program.score)}점</span>
+            </div>
+          </div>
+          <div class="cell" data-label="상태">
+            <span class="badge ${program.status.className}">${program.status.label}</span>
+            ${deadline ? `<span class="dday">${deadline}</span>` : ""}
+          </div>
+          <div class="cell muted" data-label="지역">${escapeHtml(program.region || "-")}</div>
+          <div class="cell muted" data-label="신청기간">${escapeHtml(formatCompactPeriod(program.period))}</div>
+          <div class="cell" data-label="관련도"><span class="score">${formatNumber(program.score)}</span></div>
+          <div class="cell" data-label="조회수"><span class="score">${formatNumber(program.views || 0)}</span></div>
+        `;
+        button.addEventListener("click", () => openProgramModal(program));
+        listEl.appendChild(button);
+      }
+
+      renderPagination(totalPages);
+    }
+
+    function appendPageButton(label, page, disabled = false, active = false) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `page-button${active ? " is-active" : ""}`;
+      button.textContent = label;
+      button.disabled = disabled;
+      button.addEventListener("click", () => {
+        if (disabled || page === state.page) return;
+        state.page = page;
+        renderList();
+        document.querySelector(".board")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      paginationEl.appendChild(button);
+    }
+
+    function appendEllipsis() {
+      const span = document.createElement("span");
+      span.className = "page-ellipsis";
+      span.textContent = "...";
+      paginationEl.appendChild(span);
+    }
+
+    function renderPagination(totalPages) {
+      paginationEl.innerHTML = "";
+      if (totalPages <= 1) return;
+
+      appendPageButton("이전", Math.max(1, state.page - 1), state.page === 1);
+
+      const pages = new Set([1, totalPages]);
+      const half = Math.floor(MAX_PAGE_BUTTONS / 2);
+      let start = Math.max(1, state.page - half);
+      let end = Math.min(totalPages, state.page + half);
+
+      if (state.page <= half + 1) {
+        end = Math.min(totalPages, MAX_PAGE_BUTTONS);
+      }
+
+      if (state.page >= totalPages - half) {
+        start = Math.max(1, totalPages - MAX_PAGE_BUTTONS + 1);
+      }
+
+      for (let page = start; page <= end; page += 1) {
+        pages.add(page);
+      }
+
+      const sortedPages = [...pages].sort((a, b) => a - b);
+      let previousPage = 0;
+
+      for (const page of sortedPages) {
+        if (previousPage && page - previousPage > 1) appendEllipsis();
+        appendPageButton(String(page), page, false, page === state.page);
+        previousPage = page;
+      }
+
+      appendPageButton("다음", Math.min(totalPages, state.page + 1), state.page === totalPages);
+    }
+
+    function renderDetail(program) {
+      const title = document.getElementById("modalTitle");
+      const status = document.getElementById("detailStatus");
+      const type = document.getElementById("detailType");
+      const region = document.getElementById("detailRegion");
+      const period = document.getElementById("detailPeriod");
+      const score = document.getElementById("detailScore");
+      const views = document.getElementById("detailViews");
+      const originalViews = document.getElementById("detailOriginalViews");
+      const agency = document.getElementById("detailAgency");
+      const target = document.getElementById("detailTarget");
+      const content = document.getElementById("detailContent");
+      const apply = document.getElementById("detailApply");
+      const contact = document.getElementById("detailContact");
+      const applyLink = document.getElementById("applyLink");
+
+      if (!program) return;
+
+      const programStatus = program.status || getProgramStatus(program);
+      const sourceUrl = program.sourceUrl || "";
+
+      status.className = `badge ${programStatus.className}`;
+      status.textContent = programStatus.label;
+      title.textContent = program.title;
+      type.className = `chip type-chip ${typeClass(firstType(program.type))}`;
+      type.textContent = program.type || "기타";
+      region.textContent = program.region || "지역 미상";
+      period.textContent = formatCompactPeriod(program.period) || "기간 확인 필요";
+      score.textContent = `관련도 ${formatNumber(program.score)}점`;
+      views.textContent = `조회수 ${formatNumber(program.views || 0)}`;
+      originalViews.textContent = `원문보기 ${formatNumber(program.originalViews || 0)}`;
+      agency.textContent = `소관 ${program.ministry || "-"} / 수행 ${program.agency || "-"}`;
+      target.textContent = program.target || "-";
+      content.textContent = program.content || "-";
+      apply.textContent = program.apply || "-";
+      contact.textContent = program.contact || "-";
+
+      if (sourceUrl) {
+        applyLink.href = sourceUrl;
+        applyLink.textContent = "원문 보기";
+        applyLink.removeAttribute("aria-disabled");
+        applyLink.removeAttribute("tabindex");
+      } else {
+        applyLink.href = "#";
+        applyLink.textContent = "원문 링크 없음";
+        applyLink.setAttribute("aria-disabled", "true");
+        applyLink.tabIndex = -1;
+      }
+    }
+
+    function openProgramModal(program, pushHistory = true) {
+      state.selected = program;
+      state.modalOpen = true;
+      renderDetail(program);
+      countProgramView(program);
+      renderList();
+      modal.hidden = false;
+      modal.classList.add("is-open");
+      document.body.classList.add("modal-open");
+      modalBack.focus();
+
+      if (pushHistory) {
+        history.pushState({ programModal: true, title: program.title }, "", "#program-detail");
+      }
+    }
+
+    // ── 조회수 기록 (Apps Script API 호출) ──────────────────────────────
+
+    function programKeyOf(program) {
+      return program.sourceUrl || program.applyUrl || program.title || "";
+    }
+
+    function countProgramView(program) {
+      if (!program) return;
+
+      const programKey = programKeyOf(program);
+      if (!programKey || !isApiConfigured()) return;
+
+      // 상세 팝업을 열 때마다 조회수 1 증가
+      callApi({ action: "view", key: programKey })
+        .then(result => {
+          if (!result || !result.ok) {
+            console.warn("상세 조회수 기록 실패:", result && result.message, result);
+            return;
+          }
+
+          const nextValue = result.views || result.value || 0;
+          updateProgramCount(program, "views", nextValue);
+
+          const detailViews = document.getElementById("detailViews");
+          if (detailViews) {
+            detailViews.textContent = `조회수 ${formatNumber(nextValue)}`;
+          }
+
+          renderList();
+        })
+        .catch(error => {
+          console.warn("상세 조회수 기록 오류:", error);
+        });
+    }
+
+    function countOriginalView(program) {
+      if (!program) return;
+
+      const programKey = programKeyOf(program);
+      if (!programKey || !isApiConfigured()) return;
+
+      // 원문 보기 버튼 클릭 때마다 원문보기수 1 증가
+      callApi({ action: "original", key: programKey })
+        .then(result => {
+          if (!result || !result.ok) {
+            console.warn("원문보기수 기록 실패:", result && result.message, result);
+            return;
+          }
+
+          const nextValue = result.views || result.value || 0;
+          updateProgramCount(program, "originalViews", nextValue);
+
+          const detailOriginalViews = document.getElementById("detailOriginalViews");
+          if (detailOriginalViews) {
+            detailOriginalViews.textContent = `원문보기 ${formatNumber(nextValue)}`;
+          }
+
+          renderList();
+        })
+        .catch(error => {
+          console.warn("원문보기수 기록 오류:", error);
+        });
+    }
+
+    function updateProgramCount(program, fieldName, value) {
+      const matched = programs.find(item =>
+        item.title === program.title ||
+        (item.sourceUrl && item.sourceUrl === program.sourceUrl) ||
+        (item.applyUrl && item.applyUrl === program.applyUrl)
+      );
+
+      if (matched) {
+        matched[fieldName] = value;
+      }
+
+      if (state.selected) {
+        state.selected[fieldName] = value;
+      }
+
+      program[fieldName] = value;
+    }
+
+    function hideProgramModal() {
+      state.modalOpen = false;
+      modal.classList.remove("is-open");
+      document.body.classList.remove("modal-open");
+      modal.hidden = true;
+      renderList();
+    }
+
+    function closeProgramModal(fromHistory = false) {
+      if (!state.modalOpen) return;
+      if (!fromHistory && history.state?.programModal) {
+        history.back();
+        return;
+      }
+      hideProgramModal();
+    }
+
+    function bindEvents() {
+      searchInput.addEventListener("input", event => {
+        state.search = event.target.value;
+        state.page = 1;
+        updateControlStates();
+        renderList();
+      });
+
+      typeFilter.addEventListener("change", event => {
+        state.type = event.target.value;
+        state.page = 1;
+        updateControlStates();
+        renderList();
+      });
+
+      regionFilter.addEventListener("change", event => {
+        state.region = event.target.value;
+        state.page = 1;
+        updateControlStates();
+        renderList();
+      });
+
+      sortSelect.addEventListener("change", event => {
+        state.sort = event.target.value;
+        state.page = 1;
+        updateControlStates();
+        renderList();
+      });
+
+      tabs.forEach(tab => tab.addEventListener("click", () => setStatusFilter(tab.dataset.status)));
+      statButtons.forEach(button => button.addEventListener("click", () => setStatusFilter(button.dataset.statStatus)));
+
+      modal.addEventListener("click", event => {
+        if (event.target === modal) closeProgramModal();
+      });
+      modalPanel.addEventListener("click", event => event.stopPropagation());
+      modalBack.addEventListener("click", () => closeProgramModal());
+      modalBackBottom.addEventListener("click", () => closeProgramModal());
+
+      document.getElementById("applyLink").addEventListener("click", event => {
+        if (event.currentTarget.getAttribute("aria-disabled") === "true") {
+          event.preventDefault();
+          return;
+        }
+
+        countOriginalView(state.selected);
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && state.modalOpen) closeProgramModal();
+      });
+
+      window.addEventListener("popstate", event => {
+        if (event.state?.programModal) {
+          const program = programs.find(item => item.title === event.state.title) || state.selected || programs[0];
+          if (!program) return;
+          openProgramModal({ ...program, status: getProgramStatus(program) }, false);
+          return;
+        }
+        if (state.modalOpen) closeProgramModal(true);
+      });
+    }
+
+    function renderAll() {
+      hydrateFilters();
+      renderUpdatedAt();
+      updateControlStates();
+      renderStats();
+      syncStatusControls();
+      renderWeeklyTopPrograms();
+      renderList();
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function applyProgramData(payload) {
+      programs = (payload && payload.programs ? payload.programs : []).filter(program => program.title);
+      dataUpdatedAt = payload && payload.updatedAt ? payload.updatedAt : "";
+      loadErrorMessage = "";
+      renderAll();
+    }
+
+    async function loadProgramData() {
+      if (!isApiConfigured()) {
+        showNotice(
+          "<strong>API 연결 설정이 필요합니다.</strong> " +
+          "Apps Script를 웹 앱으로 배포한 뒤, <code>config.js</code> 파일의 <code>API_URL</code> 값에 " +
+          "<code>https://script.google.com/macros/s/.../exec</code> 형식의 배포 URL을 입력하세요."
+        );
+        loadErrorMessage = "API_URL이 설정되지 않아 데이터를 불러올 수 없습니다.";
+        renderAll();
+        return;
+      }
+
+      hideNotice();
+      listEl.innerHTML = '<div class="empty">데이터를 불러오는 중입니다.</div>';
+
+      try {
+        const payload = await callApi({ action: "data" });
+
+        if (!payload || payload.ok === false) {
+          throw new Error((payload && payload.message) || "API에서 오류를 반환했습니다.");
+        }
+
+        applyProgramData(payload);
+      } catch (error) {
+        console.error(error);
+        loadErrorMessage = `데이터를 불러오지 못했습니다. ${error.message || error}`;
+        showNotice(
+          "<strong>데이터를 불러오지 못했습니다.</strong> " + escapeHtml(error.message || String(error)) +
+          " — 웹앱 배포 액세스가 '모든 사용자'인지, 최신 버전으로 재배포했는지 확인하세요."
+        );
+        renderAll();
+      }
+    }
+
+    bindEvents();
+    loadProgramData();
+  </script>
+</body>
+</html>
