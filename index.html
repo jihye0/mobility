@@ -4754,6 +4754,10 @@
       }
 
       program[fieldName] = value;
+
+      // 새로고침 시에도 바뀐 숫자가 바로 보이도록 브라우저 캐시에도 반영
+      writeLocalCache({ ok: true, updatedAt: dataUpdatedAt, programs });
+      renderedFingerprint = fingerprint({ updatedAt: dataUpdatedAt, programs });
     }
 
     function hideProgramModal() {
