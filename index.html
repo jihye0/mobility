@@ -3930,57 +3930,274 @@
     }
 
 
+
+    /* ── 상단 바 + 네이비 제목 띠 (2026-11-16 추가, .app 바깥) ── */
+    .site-bar {
+      background: #fff;
+      border-bottom: 1px solid #dde1e8;
+    }
+
+    .site-wrap {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-bar .site-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 52px;
+    }
+
+    .site-brand {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 0;
+      color: #00287a;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .site-sub {
+      margin-left: 12px;
+      padding-left: 12px;
+      border-left: 1px solid #c4c9d3;
+      color: #646666;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .site-bar .site-wrap > .site-brand { margin-right: 0; }
+    .site-bar .site-sub { margin-right: auto; }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      color: #646666;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .site-nav a:hover { color: #00287a; background: #eef2fa; }
+    .site-nav a:focus-visible { outline: 2px solid #00287a; outline-offset: 2px; }
+    .site-nav svg { width: 12px; height: 12px; }
+
+    .site-band {
+      background: #00287a;
+      color: #fff;
+      padding: 24px 16px 28px;
+    }
+
+    .site-band .header { margin-top: 0; color: var(--text); }
+
+    .site-band .headline,
+    .site-band .top-programs { box-shadow: none; }
+
+    .headline-title {
+      max-width: 1060px;
+      margin: 10px 0 10px;
+      color: var(--text);
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.18;
+    }
+
+    .site-band .site-wrap { width: min(1440px, 100%); }
+
+
+    @media (max-width: 1180px) {
+      .site-wrap { width: min(100% - 24px, 880px); }
+      .site-band .site-wrap { width: min(100%, 880px); }
+    }
+
+    @media (max-width: 560px) {
+      .site-wrap { width: calc(100% - 20px); }
+      .site-bar .site-wrap { min-height: 48px; }
+      .site-nav a:not(:last-child) { display: none; }
+      .site-sub { display: none; }
+      .site-brand { font-size: 16px; }
+      .site-band { padding: 22px 10px 24px; }
+      .site-band .site-wrap { width: 100%; }
+      .site-band .header { margin-top: 0; }
+      .headline-title { font-size: 25px; }
+    }
+
+    /* ── 목록 가독성·상태 칸 한 줄 (2026-11-16 추가, 기존 규칙 위에 덮어씀) ── */
+    .program-row {
+      grid-template-columns: minmax(0, 1fr) 150px 96px 140px 64px 64px;
+    }
+
+    .program-title {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+
+    .meta {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .cell {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cell.muted { font-weight: 500; }
+
+    .program-row .cell[data-label="상태"] {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .badge, .dday { font-weight: 700; white-space: nowrap; }
+
+    /* 카드형(1180px 이하): 상태·지역·신청기간을 한 줄로 */
+    @media (max-width: 1180px) {
+      .program-row {
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 18px;
+        row-gap: 8px;
+      }
+
+      .program-main { flex: 1 1 100%; }
+
+      .program-title { font-size: 19px; line-height: 1.4; margin-bottom: 8px; }
+
+      .meta { font-size: 14px; }
+
+      .program-row .cell {
+        display: inline-flex !important;
+        grid-template-columns: none !important;
+        align-items: center;
+        gap: 6px;
+        width: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        color: var(--text) !important;
+        text-align: left !important;
+        justify-self: auto !important;
+        white-space: nowrap;
+      }
+
+      .program-row .cell::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 13px !important;
+        font-weight: 600 !important;
+      }
+
+      .program-row .cell[data-label="상태"]::before { content: none; }
+      .program-row .cell[data-label="상태"] .badge { justify-self: auto; }
+
+      .program-row .cell[data-label="관련도"],
+      .program-row .cell[data-label="조회수"] { display: none !important; }
+
+      .badge, .dday {
+        min-height: 28px;
+        padding: 4px 10px;
+        font-size: 13px;
+      }
+
+      .badge { min-width: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .program-title { font-size: 17px; }
+      .program-row .cell { font-size: 14px !important; }
+      .program-row { column-gap: 12px; }
+    }
   </style>
 </head>
 <body>
+  <header class="site-bar">
+    <div class="site-wrap">
+      <a class="site-brand" href="https://www.kmbridge.org/" target="_blank" rel="noopener noreferrer" aria-label="K-Mobility 브릿지 재단 홈페이지로 이동">K-Mobility 브릿지 재단</a>
+      <span class="site-sub">협력사 지원사업 대시보드</span>
+      <nav class="site-nav" aria-label="바로가기">
+        <a href="#weeklyTopTitle">마감 전 추천</a>
+        <a href="#programList">공고 목록</a>
+        <a href="https://www.kmbridge.org/" target="_blank" rel="noopener noreferrer">재단 홈페이지
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5 3 9"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="site-band" aria-labelledby="page-title">
+    <div class="site-wrap">
+      <section class="header" aria-label="지원사업 현황과 추천 공고">
+        <div class="headline">
+          <div class="headline-kicker">모빌리티 지원사업 대시보드</div>
+          <h1 id="page-title" class="headline-title">모빌리티 협력사를 위한 정부 지원 사업, 지금 바로 확인하세요</h1>
+          <div class="benefit-strip" aria-label="지원 분야">
+            <span class="benefit-chip">수출</span>
+            <span class="benefit-chip">고용</span>
+            <span class="benefit-chip">인증</span>
+            <span class="benefit-chip">기술개발</span>
+            <span class="benefit-text">신청 가능한 공고와 마감 임박 사업을 빠르게 확인하세요.</span>
+          </div>
+          <div class="updated-at">최근 업데이트 <time id="updatedAt">-</time></div>
+          <div class="stats" aria-label="지원사업 현황">
+            <button class="stat" type="button" data-stat-status="">
+              <span>전체 공고</span>
+              <strong id="statTotal">0</strong>
+            </button>
+            <button class="stat" type="button" data-stat-status="open">
+              <span>접수 가능</span>
+              <strong id="statOpen">0</strong>
+            </button>
+            <button class="stat" type="button" data-stat-status="closing">
+              <span>마감임박</span>
+              <strong id="statClosing">0</strong>
+            </button>
+            <button class="stat" type="button" data-stat-status="ended">
+              <span>마감</span>
+              <strong id="statEnded">0</strong>
+            </button>
+          </div>
+        </div>
+
+        <aside class="top-programs" aria-labelledby="weeklyTopTitle">
+          <div class="top-programs-head">
+            <span>마감 전 추천 공고</span>
+            <strong id="weeklyTopTitle">TOP 5</strong>
+          </div>
+          <div id="weeklyTopList" class="top-list"></div>
+        </aside>
+  
+      </section>
+    </div>
+  </section>
+
   <div class="app">
-    <header class="topbar">
-      <a class="brand" href="https://www.kmbridge.org/" target="_blank" rel="noopener noreferrer" aria-label="K-Mobility 브릿지재단 홈페이지로 이동">
-        <span>K-Mobility<small>브릿지 재단</small></span>
-      </a>
-    </header>
-
-    <section class="header" aria-labelledby="page-title">
-      <div class="headline">
-        <div class="headline-kicker">모빌리티 지원사업 대시보드</div>
-        <h1 id="page-title">모빌리티 협력사를 위한 정부 지원 사업, 지금 바로 확인하세요</h1>
-        <div class="benefit-strip" aria-label="지원 분야">
-          <span class="benefit-chip">수출</span>
-          <span class="benefit-chip">고용</span>
-          <span class="benefit-chip">인증</span>
-          <span class="benefit-chip">기술개발</span>
-          <span class="benefit-text">신청 가능한 공고와 마감 임박 사업을 빠르게 확인하세요.</span>
-        </div>
-        <div class="updated-at">최근 업데이트 <time id="updatedAt">-</time></div>
-        <div class="stats" aria-label="지원사업 현황">
-          <button class="stat" type="button" data-stat-status="">
-            <span>전체 공고</span>
-            <strong id="statTotal">0</strong>
-          </button>
-          <button class="stat" type="button" data-stat-status="open">
-            <span>접수 가능</span>
-            <strong id="statOpen">0</strong>
-          </button>
-          <button class="stat" type="button" data-stat-status="closing">
-            <span>마감 임박</span>
-            <strong id="statClosing">0</strong>
-          </button>
-          <button class="stat" type="button" data-stat-status="ended">
-            <span>마감</span>
-            <strong id="statEnded">0</strong>
-          </button>
-        </div>
-      </div>
-
-      <aside class="top-programs" aria-labelledby="weeklyTopTitle">
-        <div class="top-programs-head">
-          <span>마감 전 추천 공고</span>
-          <strong id="weeklyTopTitle">TOP 5</strong>
-        </div>
-        <div id="weeklyTopList" class="top-list"></div>
-      </aside>
-    </section>
-
     <section class="toolbar" aria-label="검색 및 필터">
       <label class="sr-only" for="searchInput">검색</label>
       <input id="searchInput" class="search" type="search" placeholder="사업명, 지원내용, 키워드, 지역으로 검색">
@@ -4210,9 +4427,11 @@
       }
 
       if (end) {
-        const days = Math.ceil((end - today) / 86400000);
+        // 마감일 00:00 기준으로 날짜 차이를 센다 (마감 당일 = 0 = D-Day)
+        const endDay = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+        const days = Math.round((endDay - today) / 86400000);
         if (days <= 7) {
-          return { key: "closing", label: "접수중", className: "closing", days };
+          return { key: "closing", label: "마감임박", className: "closing", days };
         }
         return { key: "open", label: "접수중", className: "open", days };
       }
@@ -4443,7 +4662,8 @@
     function renderUpdatedAt() {
       const sourceDate = dataUpdatedAt ? new Date(dataUpdatedAt) : new Date();
       const date = Number.isNaN(sourceDate.getTime()) ? new Date() : sourceDate;
-      document.getElementById("updatedAt").textContent = date.toLocaleDateString("ko-KR", {
+      const updatedEl = document.getElementById("updatedAt");
+      updatedEl.textContent = date.toLocaleDateString("ko-KR", {
         year: "numeric",
         month: "2-digit",
         day: "2-digit"
